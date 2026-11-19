@@ -26,7 +26,7 @@ function Carousel() {
           <div className="carousel-caption" style={{ background: "rgba(0, 0, 0, 0.6)", padding: "25px", borderRadius: "15px", bottom: "80px" }}>
             <h2 style={{ fontWeight: "bold", fontSize: "38px", color: "white" }}>First-Class in Medical Facilities</h2>
             <p style={{ fontSize: "18px", color: "#f1f1f1" }}>Advanced Scan, Lab & ICU - Everything in one place.</p>
-            <button className="btn btn-primary" style={{ padding: "10px 25px", borderRadius: "25px", fontWeight: "bold" }}>Our Services</button>
+            <button className="btn btn-primary" style={{ padding: "10px 25px", borderRadius: "25px", fontWeight: "bold" }}>Our Rewards</button>
           </div>
         </div>
 
@@ -44,4 +44,4 @@ function Carousel() {
   )
 }
 
-export default Carousel;
+export default Carousel

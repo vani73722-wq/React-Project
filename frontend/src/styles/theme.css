@@ -1,0 +1,43 @@
+/* src/styles/theme.css */
+:root {
+  --navy: #001f3f;       /* deep navy */
+  --royal: #0066ff;     /* active/CTA */
+  --light: #e6f2ff;    /* background */
+  --white: #ffffff;
+}
+
+/* Global resets and utilities */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--light);
+  color: var(--navy);
+}
+
+.btn-primary {
+  background-color: var(--royal) !important;
+  border-color: var(--royal) !important;
+}
+
+.bg-primary {
+  background-color: var(--royal) !important;
+}
+
+.text-primary {
+  color: var(--royal) !important;
+}
+
+.bg-navy {
+  background-color: var(--navy) !important;
+}
+
+.text-navy {
+  color: var(--navy) !important;
+}
+
+.rounded-3 {
+  border-radius: .75rem !important;
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(0,0,0,.1) !important;
+}
