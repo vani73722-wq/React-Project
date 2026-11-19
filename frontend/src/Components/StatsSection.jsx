@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-function StatsSection() {
+export default function StatsSection() {
   const [counts, setCounts] = useState({
     years: 0,
     patients: 0,
@@ -8,8 +8,8 @@ function StatsSection() {
   });
 
   useEffect(() => {
-    const duration = 1500;
-    const steps = 60;
+    const duration = 1400;
+    const steps = 40;
     const intervalTime = duration / steps;
     let step = 0;
 
@@ -42,14 +42,13 @@ function StatsSection() {
     {
       id: 1,
       title: `${counts.years}+ Years`,
-      subtitle: "Experience Serving Sivakasi",
+      subtitle: 'Experience Serving Sivakasi',
       icon: (
         <svg
-          width="36"
-          height="36"
+          className="w-7 h-7 sm:w-8 sm:h-8"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#0b5ed7"
+          stroke="#0d6efd"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -66,36 +65,34 @@ function StatsSection() {
     {
       id: 2,
       title: `${counts.patients.toLocaleString()}+`,
-      subtitle: "Happy Patients Recovered & Happy",
+      subtitle: 'Happy Recovered Patients',
       icon: (
         <svg
-          width="36"
-          height="36"
+          className="w-7 h-7 sm:w-8 sm:h-8"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#0b5ed7"
+          stroke="#0d6efd"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
           <circle cx="12" cy="12" r="9" />
-          <line x1="9" y1="10" x2="9.01" y2="10" strokeWidth="3.5" />
-          <line x1="15" y1="10" x2="15.01" y2="10" strokeWidth="3.5" />
+          <line x1="9" y1="10" x2="9.01" y2="10" strokeWidth="3" />
+          <line x1="15" y1="10" x2="15.01" y2="10" strokeWidth="3" />
           <path d="M8 13.5h8c0 2.5-1.8 4-4 4s-4-1.5-4-4z" />
         </svg>
       ),
     },
     {
       id: 3,
-      title: "24/7 Emergency",
-      subtitle: "Always Open",
+      title: '24/7',
+      subtitle: 'Emergency Trauma Support',
       icon: (
         <svg
-          width="36"
-          height="36"
+          className="w-7 h-7 sm:w-8 sm:h-8"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#0b5ed7"
+          stroke="#0d6efd"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -111,15 +108,14 @@ function StatsSection() {
     },
     {
       id: 4,
-      title: `${counts.doctors}+ Expert Doctors`,
-      subtitle: "Specialist Team",
+      title: `${counts.doctors}+ Doctors`,
+      subtitle: 'Senior Specialist Team',
       icon: (
         <svg
-          width="36"
-          height="36"
+          className="w-7 h-7 sm:w-8 sm:h-8"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#0b5ed7"
+          stroke="#0d6efd"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -135,118 +131,40 @@ function StatsSection() {
   ];
 
   return (
-    <section
-      className="py-5"
-      style={{
-        backgroundColor: "#d5e9ff",
-        background: "linear-gradient(180deg, #d8ebfd 0%, #cce4fc 100%)",
-        width: "100%",
-        paddingTop: "60px",
-        paddingBottom: "70px",
-        borderRadius: "24px",
-        marginTop: "30px",
-      }}
-    >
-      <div className="container">
-        {/* Title & Subtitle */}
-        <div className="text-center mb-5">
-          <h2
-            style={{
-              fontSize: "36px",
-              fontWeight: "800",
-              color: "#0f233d",
-              marginBottom: "10px",
-              letterSpacing: "-0.5px",
-            }}
-          >
-            Why Patients Trust Us
+    <section className="my-10 md:my-14 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-blue-700 to-[#001f3f] rounded-3xl text-white shadow-xl relative overflow-hidden">
+      {/* Background graphic elements */}
+      <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-blue-400/10 blur-2xl pointer-events-none" />
+
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-8 md:mb-10 max-w-2xl mx-auto">
+          <span className="inline-block px-3 py-1 mb-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-white/15 text-blue-100">
+            Our Healthcare Impact
+          </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+            Why Sivakasi Trusts NAIRA
           </h2>
-          <div
-            style={{
-              width: "48px",
-              height: "4px",
-              backgroundColor: "#0d6efd",
-              borderRadius: "4px",
-              margin: "0 auto 16px auto",
-            }}
-          ></div>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#4a5a70",
-              fontWeight: "500",
-              maxWidth: "600px",
-              margin: "0 auto",
-            }}
-          >
-            Trusted care with experience, love and 24/7 support
+          <p className="text-xs sm:text-sm md:text-base text-blue-100/90 mt-2">
+            Combining compassion with world-class medical infrastructure and round-the-clock availability.
           </p>
         </div>
 
-        {/* 4 Counter Cards */}
-        <div className="row g-4 justify-content-center">
+        {/* 4 Cards Grid - Fully Responsive */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {stats.map((item) => (
-            <div key={item.id} className="col-12 col-sm-6 col-lg-3">
-              <div
-                className="card h-100 border-0 text-center count-card"
-                style={{
-                  backgroundColor: "#ffffff",
-                  borderRadius: "22px",
-                  padding: "35px 20px 30px",
-                  boxShadow: "0 10px 25px rgba(13, 110, 253, 0.08)",
-                  transition: "all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-8px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 18px 35px rgba(13, 110, 253, 0.16)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 10px 25px rgba(13, 110, 253, 0.08)";
-                }}
-              >
-                {/* Circular Icon Container */}
-                <div
-                  className="mx-auto d-flex align-items-center justify-content-center"
-                  style={{
-                    width: "74px",
-                    height: "74px",
-                    borderRadius: "50%",
-                    backgroundColor: "#dbeaff",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {item.icon}
-                </div>
-
-                {/* Count Title */}
-                <h3
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "800",
-                    color: "#0f233d",
-                    marginBottom: "8px",
-                  }}
-                >
-                  {item.title}
-                </h3>
-
-                {/* Subtitle */}
-                <p
-                  style={{
-                    fontSize: "14.5px",
-                    color: "#5b6b80",
-                    fontWeight: "500",
-                    lineHeight: "1.4",
-                    marginBottom: "0",
-                  }}
-                >
-                  {item.subtitle}
-                </p>
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl p-4 sm:p-5 md:p-6 text-center text-slate-800 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center border border-white/60"
+            >
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                {item.icon}
               </div>
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-[#001f3f] mb-1 tracking-tight">
+                {item.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 font-medium m-0 leading-tight">
+                {item.subtitle}
+              </p>
             </div>
           ))}
         </div>
@@ -254,5 +172,3 @@ function StatsSection() {
     </section>
   );
 }
-
-export default StatsSection;
