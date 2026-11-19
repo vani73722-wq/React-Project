@@ -1,13 +1,27 @@
-import React from 'react';
+export default function ContactInfoCard({ icon, title, value, detail, actionLink }) {
+  const displayValue = value || detail;
 
-function ContactInfoCard({ icon, title, value }) {
-  return (
-    <div style={{ background: 'white', borderRadius: '16px', boxShadow: '0 5px 15px rgba(0,0,0,0.1)', padding: '20px', textAlign: 'center', width: '250px' }}>
-      <div style={{ fontSize: '28px', marginBottom: '10px' }}>{icon}</div>
-      <h3 style={{ color: '#0B2F6B', fontSize: '16px', margin: '0 0 5px 0' }}>{title}</h3>
-      <p style={{ color: '#555', fontSize: '14px', margin: '0' }}>{value}</p>
+  const content = (
+    <div className="h-full bg-white rounded-2xl p-5 shadow-sm hover:shadow-md border border-blue-50 transition-all flex items-start gap-4 text-left">
+      <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-2xl">
+        {icon}
+      </div>
+      <div>
+        <h4 className="text-sm font-bold text-[#001f3f] m-0 mb-1">{title}</h4>
+        <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed font-medium">
+          {displayValue}
+        </p>
+      </div>
     </div>
   );
-}
 
-export default ContactInfoCard
+  if (actionLink) {
+    return (
+      <a href={actionLink} className="text-decoration-none block h-full">
+        {content}
+      </a>
+    );
+  }
+
+  return content;
+}
