@@ -4,7 +4,7 @@ function Carousel() {
       <div className="carousel-inner">
 
         <div className="carousel-item active">
-          <img src="hospic.png" className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="Its Naira Multi Specialist Hospital." />
+          <img src={hospic} className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="Its Naira Multi Specialist Hospital." />
           <div className="carousel-caption" style={{ background: "rgba(0, 0, 0, 0.6)", padding: "25px", borderRadius: "15px", bottom: "80px" }}>
             <h2 style={{ fontWeight: "bold", fontSize: "38px", color: "white" }}>Naira Multi Specialist Hospital</h2>
             <p style={{ fontSize: "18px", color: "#f1f1f1" }}>Trusted healthcare in Sivakasi for your family.</p>
@@ -13,7 +13,7 @@ function Carousel() {
         </div>
 
         <div className="carousel-item">
-          <img src="care.jpg" className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="Our Doctors Care for Your Health" />
+          <img src={care} className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="Our Doctors Care for Your Health" />
           <div className="carousel-caption" style={{ background: "rgba(0, 0, 0, 0.6)", padding: "25px", borderRadius: "15px", bottom: "80px" }}>
             <h2 style={{ fontWeight: "bold", fontSize: "38px", color: "white" }}>Expert Doctors, Caring Hands</h2>
             <p style={{ fontSize: "18px", color: "#f1f1f1" }}>Our Doctors Care for Your Health</p>
@@ -22,7 +22,7 @@ function Carousel() {
         </div>
 
         <div className="carousel-item">
-          <img src="scan.jpg" className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="First-Class in Medical Facilities" />
+          <img src={scan} className="d-block w-100 rounded-5" style={{ height: "500px", objectFit: "cover" }} alt="First-Class in Medical Facilities" />
           <div className="carousel-caption" style={{ background: "rgba(0, 0, 0, 0.6)", padding: "25px", borderRadius: "15px", bottom: "80px" }}>
             <h2 style={{ fontWeight: "bold", fontSize: "38px", color: "white" }}>First-Class in Medical Facilities</h2>
             <p style={{ fontSize: "18px", color: "#f1f1f1" }}>Advanced Scan, Lab & ICU - Everything in one place.</p>

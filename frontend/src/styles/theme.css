@@ -1,43 +1,267 @@
-/* src/styles/theme.css */
+/* NAIRA Multi-Speciality Hospital - Theme & Design System */
+
 :root {
-  --navy: #001f3f;       /* deep navy */
-  --royal: #0066ff;     /* active/CTA */
-  --light: #e6f2ff;    /* background */
+  --navy: #071f3d;
+  --navy-dark: #041226;
+  --royal: #0066cc;
+  --royal-hover: #004d99;
+  --royal-light: #e8f2fc;
+  --light-blue: #f3f8fd;
   --white: #ffffff;
+  --accent-teal: #00a896;
+  --accent-orange: #f59e0b;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
 }
 
-/* Global resets and utilities */
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: var(--light);
-  color: var(--navy);
-}
-
-.btn-primary {
-  background-color: var(--royal) !important;
-  border-color: var(--royal) !important;
-}
-
-.bg-primary {
-  background-color: var(--royal) !important;
-}
-
-.text-primary {
-  color: var(--royal) !important;
-}
-
+/* Background & text helper classes */
 .bg-navy {
   background-color: var(--navy) !important;
 }
-
+.bg-navy-dark {
+  background-color: var(--navy-dark) !important;
+}
+.bg-royal {
+  background-color: var(--royal) !important;
+}
+.bg-royal-light {
+  background-color: var(--royal-light) !important;
+}
+.bg-light-blue {
+  background-color: var(--light-blue) !important;
+}
 .text-navy {
   color: var(--navy) !important;
 }
-
-.rounded-3 {
-  border-radius: .75rem !important;
+.text-royal {
+  color: var(--royal) !important;
+}
+.text-teal {
+  color: var(--accent-teal) !important;
 }
 
-.shadow {
-  box-shadow: 0 4px 12px rgba(0,0,0,.1) !important;
+/* BUTTON SYSTEM */
+.btn-primary-custom {
+  background-color: var(--royal);
+  color: #ffffff !important;
+  border: 1px solid var(--royal);
+  padding: 0.65rem 1.4rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary-custom:hover {
+  background-color: var(--royal-hover);
+  border-color: var(--royal-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 102, 204, 0.35);
+  color: #ffffff !important;
+}
+.btn-primary-custom:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 102, 204, 0.2);
+}
+.btn-primary-custom:focus-visible {
+  outline: 3px solid rgba(0, 102, 204, 0.4);
+  outline-offset: 2px;
+}
+.btn-primary-custom:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary-custom {
+  background-color: var(--royal-light);
+  color: var(--royal) !important;
+  border: 1px solid transparent;
+  padding: 0.65rem 1.4rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-secondary-custom:hover {
+  background-color: #d3e6fb;
+  color: var(--royal-hover) !important;
+  transform: translateY(-2px);
+}
+.btn-secondary-custom:active {
+  transform: translateY(0);
+}
+
+.btn-outline-custom {
+  background-color: transparent;
+  color: var(--royal) !important;
+  border: 2px solid var(--royal);
+  padding: 0.6rem 1.35rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-outline-custom:hover {
+  background-color: var(--royal);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+}
+.btn-outline-custom:active {
+  transform: translateY(0);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #ffffff !important;
+  border: 2px solid #ffffff;
+  padding: 0.6rem 1.35rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-outline-white:hover {
+  background-color: #ffffff;
+  color: var(--navy) !important;
+  transform: translateY(-2px);
+}
+
+/* CARD DESIGNS */
+.hospital-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid #e9edf4;
+  box-shadow: 0 4px 20px rgba(7, 31, 61, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.hospital-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(7, 31, 61, 0.12);
+  border-color: #cbd5e1;
+}
+
+.feature-card-interactive {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card-interactive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--royal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.feature-card-interactive:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 102, 204, 0.12);
+  border-color: #bfdbfe;
+}
+.feature-card-interactive:hover::after {
+  transform: scaleX(1);
+}
+
+/* NAVBAR STYLING */
+.naira-navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 15px rgba(7, 31, 61, 0.08);
+  transition: all 0.3s ease;
+}
+.nav-link-custom {
+  color: var(--navy) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+.nav-link-custom:hover {
+  color: var(--royal) !important;
+  background: var(--royal-light);
+}
+.nav-link-custom.active {
+  color: #ffffff !important;
+  background: var(--royal) !important;
+}
+
+/* SECTION HEADINGS */
+.section-badge {
+  display: inline-block;
+  background: var(--royal-light);
+  color: var(--royal);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  color: var(--navy);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* FOOTER */
+.naira-footer {
+  background: #041427;
+  color: #e2e8f0;
+  border-top: 3px solid var(--royal);
+}
+.naira-footer a {
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+.naira-footer a:hover {
+  color: #ffffff;
+}
+
+/* MODAL STYLES */
+.modal-content-custom {
+  border-radius: 1.25rem;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }

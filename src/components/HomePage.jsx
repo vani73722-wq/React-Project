@@ -1,5 +1,9 @@
 import React from 'react';
 import './HomePage.css';
+import { NavLink } from 'react-router-dom';
+import homeHero from '../assets/home-hero.jpg';
+import careImg from '../assets/care.jpg';
+import scanImg from '../assets/scan.jpg';
 
 const HomePage = () => (
   <div className="homepage">
@@ -120,9 +124,9 @@ const HomePage = () => (
       <div className="footer-col">
         <h4>Quick Links</h4>
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
+          <li style={{backgroundImage: `url(${homeHero})`, backgroundSize: 'cover'}}><NavLink to="/" className="menu-link">Home</NavLink></li>
+          <li style={{backgroundImage: `url(${careImg})`, backgroundSize: 'cover'}}><NavLink to="/about" className="menu-link">About</NavLink></li>
+          <li style={{backgroundImage: `url(${scanImg})`, backgroundSize: 'cover'}}><NavLink to="/services" className="menu-link">Services</NavLink></li>
           <li>Contact</li>
         </ul>
       </div>
