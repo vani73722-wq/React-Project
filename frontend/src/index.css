@@ -27,6 +27,8 @@ html, body {
   background-color: var(--light-blue);
   color: var(--text-dark);
   line-height: 1.6;
+  scroll-behavior: smooth;
+  text-align: left;
 }
 
 #root {
@@ -38,6 +40,7 @@ html, body {
   display: flex;
   flex-direction: column;
   border: none !important;
+  text-align: left;
 }
 
 a {
