@@ -1,206 +1,205 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight, ShieldCheck, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, ArrowRight, ShieldCheck, Heart, Award, Clock, Users } from 'lucide-react';
+import AppointmentModal from './AppointmentModal';
 
-export default function Hero({
-  tagline,
-  title,
-  description,
-  buttonText = 'Book Appointment',
-  buttonLink = '/contact',
-  imgUrl,
-  images: propImages,
-  reverse = false,
-}) {
-  const defaultSlides = [
-    {
-      url: imgUrl || '/care.jpg',
-      caption: "📍 Sivakasi's Premier Healthcare Destination",
-      alt: 'Doctors caring for patients',
-      badge: 'Compassionate Care',
-    },
-    {
-      url: '/hospic.png',
-      caption: '🏥 Advanced Emergency & Trauma Infrastructure',
-      alt: 'Hospital exterior building',
-      badge: '24/7 Casualty',
-    },
-    {
-      url: '/scan.jpg',
-      caption: '🔬 Modern CT, Ultrasound & Diagnostic Center',
-      alt: 'Advanced medical diagnostics',
-      badge: 'High Precision Lab',
-    },
-    {
-      url: '/Naira.jpg',
-      caption: '❤️ 10+ Years of Healing Families in Sivakasi',
-      alt: 'Naira hospital front campus',
-      badge: 'Trusted Legacy',
-    },
-  ];
+export default function Hero() {
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
 
-  const slides = propImages && propImages.length > 0 ? propImages : defaultSlides;
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  }, [slides.length]);
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  }, [slides.length]);
-
-  // Auto-play timer
-  useEffect(() => {
-    if (isPaused || slides.length <= 1) return;
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isPaused, nextSlide, slides.length]);
+  const handleExploreServices = () => {
+    const el = document.querySelector('#services');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = '/services';
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden w-full py-8 md:py-16 px-4 sm:px-8 lg:px-12 xl:px-16 bg-gradient-to-b from-[#eaf2ff] via-[#f1f6ff] to-[#f5f8ff] border-b border-blue-100 shadow-sm">
-      <div className="w-full">
-        <div
-          className={`flex flex-col ${
-            reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
-          } items-center justify-between gap-8 lg:gap-14 xl:gap-16`}
-        >
-          {/* Content Column */}
-          <div className="w-full lg:w-1/2 text-left space-y-4 md:space-y-5">
-            {tagline && (
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold tracking-wide">
-                <span>{tagline}</span>
-              </div>
-            )}
+    <section id="home" className="py-5 py-lg-6 position-relative overflow-hidden" style={{ backgroundColor: 'var(--slate-50)' }}>
+      {/* Decorative Background Blob */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '-15%',
+          right: '-10%',
+          width: '550px',
+          height: '550px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, rgba(255,255,255,0) 70%)',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#001f3f] leading-tight tracking-tight">
-              {title}
-            </h1>
-
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-xl">
-              {description}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <Link
-                to={buttonLink}
-                className="inline-flex items-center justify-center gap-2 bg-[#001f3f] hover:bg-[#0d6efd] text-white font-semibold rounded-full px-6 py-3 text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 text-decoration-none group"
-              >
-                <Calendar size={18} />
-                <span>{buttonText}</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              <a
-                href="tel:8940585378"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-full px-5 py-3 text-sm sm:text-base border border-slate-200 shadow-sm hover:shadow transition-all text-decoration-none"
-              >
-                <Phone size={16} className="text-emerald-600" />
-                <span>Call Helpline</span>
-              </a>
+      <div className="container-xl position-relative" style={{ zIndex: 1 }}>
+        <div className="row align-items-center g-5">
+          {/* Left Column: Heading, Subtitle & CTAs */}
+          <div className="col-lg-6">
+            <div className="section-tag">
+              <ShieldCheck size={16} />
+              <span>Leading Healthcare in Sivakasi</span>
             </div>
 
-            <div className="flex items-center gap-4 pt-2 text-xs text-slate-500 font-medium">
-              <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck size={16} className="text-emerald-600" />
-                NABH Standards
+            <h1 
+              className="display-4 fw-bolder mb-3" 
+              style={{ 
+                color: 'var(--navy)', 
+                lineHeight: 1.15,
+                letterSpacing: '-0.03em'
+              }}
+            >
+              Compassionate care. <br />
+              <span className="text-teal" style={{ background: 'var(--teal-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                Better health.
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck size={16} className="text-emerald-600" />
-                24/7 Emergency Care
+            </h1>
+
+            <p className="lead text-muted mb-4" style={{ fontSize: '1.18rem', lineHeight: '1.6', maxWidth: '540px' }}>
+              Expert care, modern facilities, and a team dedicated to you. Experience personalized medical attention backed by advanced diagnostics and 24/7 critical emergency response.
+            </p>
+
+            {/* Quick Benefits Bullet List */}
+            <div className="d-flex flex-wrap gap-3 mb-4 small text-slate-700">
+              <span className="d-inline-flex align-items-center gap-1 fw-semibold text-navy">
+                <Heart size={16} className="text-teal" /> 24/7 Emergency & ICU
               </span>
+              <span className="d-inline-flex align-items-center gap-1 fw-semibold text-navy">
+                <Users size={16} className="text-teal" /> Experienced Specialists
+              </span>
+              <span className="d-inline-flex align-items-center gap-1 fw-semibold text-navy">
+                <Clock size={16} className="text-teal" /> Instant Online OPD Booking
+              </span>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="d-flex flex-wrap align-items-center gap-3 pt-2">
+              <button 
+                type="button" 
+                className="btn-primary-teal"
+                onClick={() => setAppointmentOpen(true)}
+              >
+                <Calendar size={18} />
+                <span>Book Appointment</span>
+              </button>
+
+              <button 
+                type="button" 
+                className="btn-outline-teal"
+                onClick={handleExploreServices}
+              >
+                <span>Explore Services</span>
+                <ArrowRight size={18} />
+              </button>
+            </div>
+
+            {/* Trust Stats Bar */}
+            <div className="row g-3 pt-4 mt-3 border-top">
+              <div className="col-4">
+                <h3 className="fw-bolder mb-0 text-navy">10+</h3>
+                <small className="text-muted">Years of Trust</small>
+              </div>
+              <div className="col-4">
+                <h3 className="fw-bolder mb-0 text-navy">50k+</h3>
+                <small className="text-muted">Patients Treated</small>
+              </div>
+              <div className="col-4">
+                <h3 className="fw-bolder mb-0 text-teal">24/7</h3>
+                <small className="text-muted">Emergency Care</small>
+              </div>
             </div>
           </div>
 
-          {/* Image Slider Column */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            <div
-              className="relative w-full max-w-md lg:max-w-xl group"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              {/* Slider Main Container */}
-              <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900 aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]">
-                {/* Slides */}
-                {slides.map((slide, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                      index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                    }`}
-                  >
-                    <img
-                      src={slide.url}
-                      alt={slide.alt || title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = '/care.jpg';
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
-
-                    {/* Badge top-left */}
-                    {slide.badge && (
-                      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#001f3f] px-3 py-1 rounded-full text-xs font-bold shadow-md">
-                        {slide.badge}
-                      </div>
-                    )}
-
-                    {/* Bottom Caption */}
-                    <div className="absolute bottom-3 left-3 right-3 text-white text-xs sm:text-sm font-medium bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl flex items-center justify-between">
-                      <span className="truncate pr-2">{slide.caption}</span>
-                      <span className="text-[11px] font-mono text-slate-300 shrink-0">
-                        {currentIndex + 1}/{slides.length}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-
-                {/* Arrow Controls */}
-                <button
-                  type="button"
-                  onClick={prevSlide}
-                  className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/80 hover:bg-white text-slate-800 flex items-center justify-center shadow-md transition-all opacity-80 hover:opacity-100 focus:outline-none"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={nextSlide}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/80 hover:bg-white text-slate-800 flex items-center justify-center shadow-md transition-all opacity-80 hover:opacity-100 focus:outline-none"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={20} />
-                </button>
+          {/* Right Column: Natural Hospital & Doctor Photography with Floating Badges */}
+          <div className="col-lg-6 position-relative">
+            <div className="position-relative mx-auto" style={{ maxWidth: '520px' }}>
+              {/* Main Doctor / Hospital Photo */}
+              <div 
+                className="rounded-4 overflow-hidden shadow-lg border"
+                style={{ 
+                  borderColor: 'rgba(255,255,255,0.8)',
+                  position: 'relative',
+                  backgroundColor: '#ffffff'
+                }}
+              >
+                <img 
+                  src="/images/hero-doctor.jpg" 
+                  alt="Naira Hospital Healthcare Specialists" 
+                  className="img-fluid w-100"
+                  style={{ 
+                    maxHeight: '480px', 
+                    objectFit: 'cover', 
+                    display: 'block' 
+                  }}
+                  onError={(e) => {
+                    // Fallback to care.jpg if needed
+                    e.currentTarget.src = '/src/assets/care.jpg';
+                  }}
+                />
+                
+                {/* Subtle Gradient Overlay at bottom */}
+                <div 
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: '80px',
+                    background: 'linear-gradient(to top, rgba(10, 25, 47, 0.4), transparent)'
+                  }}
+                />
               </div>
 
-              {/* Indicator Dots below slider */}
-              <div className="flex items-center justify-center gap-2 mt-3">
-                {slides.map((_, dotIdx) => (
-                  <button
-                    key={dotIdx}
-                    onClick={() => setCurrentIndex(dotIdx)}
-                    className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${
-                      dotIdx === currentIndex ? 'w-6 bg-blue-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                    }`}
-                    aria-label={`Go to slide ${dotIdx + 1}`}
-                  />
-                ))}
+              {/* Floating Badge Top-Right: Rating */}
+              <div 
+                className="hero-floating-badge position-absolute d-none d-sm-flex"
+                style={{
+                  top: '25px',
+                  right: '-15px',
+                  zIndex: 2,
+                  animation: 'floatSlow 4s ease-in-out infinite'
+                }}
+              >
+                <div 
+                  className="rounded-circle d-flex align-items-center justify-content-center text-white"
+                  style={{ width: '42px', height: '42px', backgroundColor: '#f59e0b' }}
+                >
+                  <Award size={22} />
+                </div>
+                <div>
+                  <div className="fw-bold text-navy" style={{ fontSize: '0.92rem' }}>4.9 / 5 Rating</div>
+                  <small className="text-muted" style={{ fontSize: '0.75rem' }}>From 12,000+ Reviews</small>
+                </div>
               </div>
 
-              {/* Decorative accent glow */}
-              <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full rounded-3xl bg-blue-200/50 blur-xl pointer-events-none" />
+              {/* Floating Badge Bottom-Left: Emergency Support */}
+              <div 
+                className="hero-floating-badge position-absolute d-none d-sm-flex"
+                style={{
+                  bottom: '25px',
+                  left: '-20px',
+                  zIndex: 2
+                }}
+              >
+                <div 
+                  className="rounded-circle d-flex align-items-center justify-content-center text-white"
+                  style={{ width: '42px', height: '42px', backgroundColor: 'var(--teal-primary)' }}
+                >
+                  <ShieldCheck size={22} />
+                </div>
+                <div>
+                  <div className="fw-bold text-navy" style={{ fontSize: '0.92rem' }}>NABH Standards</div>
+                  <small className="text-muted" style={{ fontSize: '0.75rem' }}>Certified Clinical Safety</small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <AppointmentModal 
+        isOpen={appointmentOpen} 
+        onClose={() => setAppointmentOpen(false)} 
+      />
     </section>
   );
 }

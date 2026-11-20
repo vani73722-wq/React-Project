@@ -1,105 +1,220 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, PhoneCall, Maximize, Minimize } from 'lucide-react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Search, Phone, Clock, MapPin, Menu, X, Calendar } from 'lucide-react';
 import logo from '../assets/Naira.jpg';
+import SearchModal from './SearchModal';
+import AppointmentModal from './AppointmentModal';
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const navItems = [
-    { name: 'Home', to: '/' },
-    { name: 'About', to: '/about' },
-    { name: 'Services', to: '/services' },
-    { name: 'Doctors', to: '/doctors' },
-    { name: 'Facilities', to: '/facilities' },
-    { name: 'Contact', to: '/contact' },
-  ];
-
-  const closeMenu = () => setIsOpen(false);
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-      }
-    }
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(Boolean(document.fullscreenElement));
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
     };
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'Home', path: '/', hash: '#home' },
+    { name: 'About Us', path: '/about', hash: '#about' },
+    { name: 'Services', path: '/services', hash: '#services' },
+    { name: 'Doctors', path: '/doctors', hash: '#doctors' },
+    { name: 'Facilities', path: '/facilities', hash: '#facilities' },
+    { name: 'Contact', path: '/contact', hash: '#contact' },
+  ];
+
+  const handleNavClick = (link) => {
+    setIsOpen(false);
+    if (location.pathname === '/' || location.pathname === '') {
+      const el = document.querySelector(link.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    navigate(link.path);
+  };
+
   return (
-    <nav className="navbar sticky-top bg-white bg-opacity-90 backdrop-blur-sm border-bottom" style={{ zIndex: 1000 }}>
-      <div className="container-fluid d-flex align-items-center justify-content-between py-2">
-        {/* Logo */}
-        <div className="d-flex align-items-center" style={{ cursor: 'pointer' }} onClick={() => setIsOpen(false)}>
-          <img src={logo} alt="NAIRA Logo" className="rounded-circle me-2" style={{ width: '36px', height: '36px', objectFit: 'cover' }} />
-          <span className="fw-bold" style={{ color: 'var(--navy)' }}>NAIRA</span>
+    <>
+      {/* Top Notification & Emergency Bar */}
+      <div 
+        className="d-none d-lg-block border-bottom py-2 small"
+        style={{ backgroundColor: 'var(--navy)', color: 'rgba(255, 255, 255, 0.85)' }}
+      >
+        <div className="container-xl d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center gap-4">
+            <span className="d-flex align-items-center gap-2">
+              <MapPin size={15} className="text-teal" />
+              142/3 Bypass Road, Sivakasi, Tamil Nadu
+            </span>
+            <span className="d-flex align-items-center gap-2">
+              <Clock size={15} className="text-teal" />
+              OPD: 8:00 AM - 8:00 PM | Emergency: 24/7 Open
+            </span>
+          </div>
+
+          <div className="d-flex align-items-center gap-3">
+            <span className="badge rounded-pill bg-danger px-2 py-1 fw-bold">24/7 EMERGENCY</span>
+            <a 
+              href="tel:8940585378" 
+              className="text-white fw-bold d-flex align-items-center gap-2"
+              style={{ textDecoration: 'none' }}
+            >
+              <Phone size={15} className="text-teal" />
+              <span className="text-teal">8940585378</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <nav 
+        className={`navbar navbar-expand-lg sticky-top navbar-custom py-2 py-lg-3 ${
+          isScrolled ? 'shadow-sm' : ''
+        }`}
+      >
+        <div className="container-xl d-flex align-items-center justify-content-between">
+          {/* Brand Logo & Name */}
+          <div 
+            className="d-flex align-items-center gap-2" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => handleNavClick({ path: '/', hash: '#home' })}
+          >
+            <img 
+              src={logo} 
+              alt="NAIRA HOSPITAL Logo" 
+              className="rounded-circle shadow-sm"
+              style={{ width: '42px', height: '42px', objectFit: 'cover', border: '2px solid var(--teal-primary)' }}
+            />
+            <div>
+              <span className="h5 fw-bolder mb-0 d-block" style={{ color: 'var(--navy)', letterSpacing: '0.02em' }}>
+                NAIRA <span className="text-teal">HOSPITAL</span>
+              </span>
+              <small className="text-muted d-block" style={{ fontSize: '0.72rem', marginTop: '-3px', letterSpacing: '0.04em' }}>
+                CARE • EXCELLENCE • TRUST
+              </small>
+            </div>
+          </div>
+
+          {/* Desktop Nav Items */}
+          <div className="d-none d-lg-flex align-items-center gap-1">
+            {navLinks.map((link, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className="btn btn-link text-decoration-none nav-link-custom"
+                onClick={() => handleNavClick(link)}
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Action Buttons: Search & Book Appointment */}
+          <div className="d-flex align-items-center gap-2 gap-md-3">
+            {/* Search Icon Button */}
+            <button
+              type="button"
+              className="btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center text-navy shadow-xs border"
+              style={{ width: '40px', height: '40px', transition: 'all 0.2s ease' }}
+              onClick={() => setSearchOpen(true)}
+              aria-label="Open Search"
+              title="Search Doctors, Specialties, Facilities"
+            >
+              <Search size={19} className="text-teal" />
+            </button>
+
+            {/* Book Appointment Button */}
+            <button
+              type="button"
+              className="btn-primary-teal d-none d-sm-inline-flex"
+              onClick={() => setAppointmentOpen(true)}
+            >
+              <Calendar size={17} />
+              <span>Book Appointment</span>
+            </button>
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              type="button"
+              className="btn btn-light d-lg-none p-2 rounded-3 border"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X size={22} className="text-navy" /> : <Menu size={22} className="text-navy" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="lg:hidden border-t border-slate-100 py-4 px-2 space-y-2 animate-fadeIn">
-            <div className="flex flex-col space-y-1">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.to}
-                  onClick={closeMenu}
-                  className={({ isActive }) =>
-                    `px-4 py-2.5 rounded-xl text-base font-semibold transition-all text-decoration-none block ${
-                      isActive
-                        ? 'bg-blue-600 text-white shadow-sm'
-                        : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
-                    }`
-                  }
+          <div className="d-lg-none w-100 bg-white border-top mt-2 py-3 px-4 shadow-lg animate__animated animate__fadeIn">
+            <div className="d-flex flex-column gap-2 mb-3">
+              {navLinks.map((link, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className="btn btn-light text-start py-2 px-3 fw-medium text-navy border-0 rounded-2"
+                  style={{ backgroundColor: 'var(--slate-50)' }}
+                  onClick={() => handleNavClick(link)}
                 >
-                  {item.name}
-                </NavLink>
+                  {link.name}
+                </button>
               ))}
             </div>
 
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <div className="d-flex flex-column gap-2 pt-2 border-top">
               <button
                 type="button"
+                className="btn-primary-teal w-100 justify-content-center py-2"
                 onClick={() => {
-                  toggleFullscreen();
-                  closeMenu();
+                  setIsOpen(false);
+                  setAppointmentOpen(true);
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100"
               >
-                {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
-                <span>{isFullscreen ? 'Exit Full Screen Mode' : 'Enable Full Screen Mode'}</span>
+                <Calendar size={18} />
+                <span>Book Appointment</span>
               </button>
-
-              <Link
-                to="/contact"
-                onClick={closeMenu}
-                className="btn btn-primary w-full rounded-xl py-2.5 font-semibold text-center text-decoration-none shadow-sm"
-              >
-                Book Appointment
-              </Link>
 
               <a
                 href="tel:8940585378"
-                className="w-full text-center py-2 text-xs font-semibold text-slate-500 hover:text-blue-600 text-decoration-none flex items-center justify-center gap-1.5"
+                className="btn btn-outline-teal w-100 justify-content-center py-2"
               >
-                <PhoneCall size={14} className="text-emerald-600" />
-                <span>24/7 Helpline: +91 89405 85378</span>
+                <Phone size={18} />
+                <span>Emergency: 8940585378</span>
               </a>
             </div>
           </div>
         )}
-      </div>
-    </nav>
+      </nav>
+
+      {/* Global Interactive Modals */}
+      <SearchModal 
+        isOpen={searchOpen} 
+        onClose={() => setSearchOpen(false)}
+        onSelectAction={(item) => {
+          if (location.pathname === '/' || location.pathname === '') {
+            const el = document.querySelector(item.section);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            navigate(item.section === '#home' ? '/' : item.section.replace('#', '/'));
+          }
+        }}
+      />
+
+      <AppointmentModal 
+        isOpen={appointmentOpen} 
+        onClose={() => setAppointmentOpen(false)} 
+      />
+    </>
   );
 }
