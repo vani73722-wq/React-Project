@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, PhoneCall, Maximize, Minimize } from 'lucide-react';
-
+import logo from '../assets/Naira.jpg';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -100,6 +100,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </header>
+    </nav>
   );
 }
