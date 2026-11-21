@@ -14,8 +14,10 @@ import {
   UserCheck
 } from 'lucide-react';
 import Modal from './Modal';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function DoctorsPage() {
+  useScrollReveal();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDept, setSelectedDept] = useState('All');
@@ -301,16 +303,16 @@ export default function DoctorsPage() {
             </div>
           ) : (
             <div className="row g-4 text-start">
-              {filteredDoctors.map((doc) => (
-                <div className="col-lg-3 col-md-6" key={doc.id}>
+              {filteredDoctors.map((doc, idx) => (
+                <div className={`col-lg-3 col-md-6 scroll-reveal stagger-${(idx % 8) + 1}`} key={doc.id}>
                   <div className="hospital-card h-100 d-flex flex-column justify-content-between">
                     <div>
                       {/* Doctor Image Container */}
-                      <div className="position-relative" style={{ height: '230px', backgroundColor: '#071f3d' }}>
+                      <div className="position-relative overflow-hidden" style={{ height: '230px', backgroundColor: '#071f3d' }}>
                         <img
                           src={doc.image}
                           alt={doc.name}
-                          className="w-100 h-100 object-fit-cover"
+                          className="w-100 h-100 object-fit-cover img-scroll-zoom"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = '/images/doctors/doctor-1.jpg';

@@ -17,8 +17,10 @@ import {
   FileText
 } from 'lucide-react';
 import Modal from './Modal';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function ServicesPage() {
+  useScrollReveal();
   const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState(null);
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);

@@ -82,7 +82,7 @@ export default function FacilitiesSection() {
         <div className="row g-4">
           {facilities.map((facility, idx) => (
             <div key={facility.id} className={`col-md-6 scroll-reveal stagger-${idx + 1}`}>
-              <div 
+              <div
                 className="hospital-card h-100 overflow-hidden d-flex flex-column"
                 style={{
                   borderRadius: '20px',
@@ -93,15 +93,13 @@ export default function FacilitiesSection() {
               >
                 {/* Beautiful Image Presentation with Zoom Effect */}
                 <div className="position-relative overflow-hidden" style={{ height: '240px' }}>
-                  <img 
-                    src={facility.image} 
-                    alt={facility.title} 
-                    className="w-100 h-100"
-                    style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                  <img
+                    src={facility.image}
+                    alt={facility.title}
+                    className="w-100 h-100 img-scroll-zoom"
+                    style={{ objectFit: 'cover' }}
                   />
-                  <div 
+                  <div
                     className="position-absolute bottom-0 start-0 w-100 p-3 d-flex justify-content-between align-items-center"
                     style={{ background: 'linear-gradient(to top, rgba(10, 25, 47, 0.8), transparent)' }}
                   >
@@ -122,8 +120,8 @@ export default function FacilitiesSection() {
                     <span className="small text-muted d-flex align-items-center gap-1">
                       <ShieldCheck size={16} className="text-teal" /> NABH Safety Certified
                     </span>
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       className="btn btn-link p-0 text-decoration-none fw-bold text-teal d-inline-flex align-items-center gap-1"
                       onClick={() => setSelectedFacility(facility)}
                     >
@@ -147,8 +145,8 @@ export default function FacilitiesSection() {
                 <h5 className="fw-bold mb-0 text-navy">{selectedFacility.title}</h5>
                 <small className="text-muted">{selectedFacility.subtitle}</small>
               </div>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-sm btn-light rounded-circle p-2"
                 onClick={() => setSelectedFacility(null)}
                 aria-label="Close"
@@ -159,10 +157,10 @@ export default function FacilitiesSection() {
 
             <div className="p-4">
               <div className="rounded-3 overflow-hidden mb-3" style={{ maxHeight: '240px' }}>
-                <img 
-                  src={selectedFacility.image} 
-                  alt={selectedFacility.title} 
-                  className="w-100 h-100" 
+                <img
+                  src={selectedFacility.image}
+                  alt={selectedFacility.title}
+                  className="w-100 h-100"
                   style={{ objectFit: 'cover' }}
                 />
               </div>
@@ -184,8 +182,8 @@ export default function FacilitiesSection() {
               </div>
 
               <div className="d-flex justify-content-end">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn btn-primary-teal px-4"
                   onClick={() => setSelectedFacility(null)}
                 >

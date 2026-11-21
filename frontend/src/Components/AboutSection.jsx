@@ -18,7 +18,7 @@ export default function AboutSection() {
                 <img 
                   src="/images/about/reception.jpg" 
                   alt="Naira Hospital Reception and Patient Care" 
-                  className="img-fluid w-100"
+                  className="img-fluid w-100 img-scroll-zoom"
                   style={{ maxHeight: '460px', objectFit: 'cover', display: 'block' }}
                   onError={(e) => {
                     e.currentTarget.src = '/images/contact/reception.jpg';

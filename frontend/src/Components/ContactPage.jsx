@@ -17,8 +17,10 @@ import {
   FaYoutube,
   FaLinkedinIn
 } from 'react-icons/fa';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function ContactPage() {
+  useScrollReveal();
   const [formData, setFormData] = useState({
     name: '',
     email: '',

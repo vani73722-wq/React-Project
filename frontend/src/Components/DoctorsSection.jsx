@@ -152,7 +152,7 @@ export default function DoctorsSection() {
         <div className="row g-4">
           {visibleDoctors.map((doc, idx) => (
             <div key={doc.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${(idx % 6) + 1}`}>
-              <div 
+              <div
                 className="hospital-card h-100 d-flex flex-column"
                 style={{
                   borderRadius: '18px'
@@ -160,15 +160,13 @@ export default function DoctorsSection() {
               >
                 {/* Doctor Portrait */}
                 <div className="position-relative overflow-hidden" style={{ height: '260px', backgroundColor: '#f1f5f9' }}>
-                  <img 
-                    src={doc.image} 
-                    alt={doc.name} 
-                    className="w-100 h-100"
-                    style={{ objectFit: 'cover', objectPosition: 'top center', transition: 'transform 0.4s ease' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.04)'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                  <img
+                    src={doc.image}
+                    alt={doc.name}
+                    className="w-100 h-100 img-scroll-zoom"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
-                  <div 
+                  <div
                     className="position-absolute bottom-0 start-0 w-100 p-2 px-3 d-flex justify-content-between align-items-center"
                     style={{ background: 'linear-gradient(to top, rgba(10, 25, 47, 0.8), transparent)' }}
                   >
@@ -199,8 +197,8 @@ export default function DoctorsSection() {
 
                   {/* Actions */}
                   <div className="pt-3 border-top d-flex align-items-center justify-content-between">
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       className="btn btn-link p-0 text-decoration-none fw-bold text-teal d-inline-flex align-items-center gap-1"
                       onClick={() => setSelectedDoctor(doc)}
                     >
@@ -208,8 +206,8 @@ export default function DoctorsSection() {
                       <ArrowRight size={15} />
                     </button>
 
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       className="btn-primary-teal py-1 px-3"
                       style={{ fontSize: '0.85rem' }}
                       onClick={() => handleBookDoctor(doc)}
@@ -226,8 +224,8 @@ export default function DoctorsSection() {
 
         {/* View All Doctors Button */}
         <div className="text-center mt-5">
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="btn-outline-teal px-4"
             onClick={() => setShowAll(!showAll)}
           >
@@ -243,9 +241,9 @@ export default function DoctorsSection() {
           <div className="modal-content-custom" onClick={(e) => e.stopPropagation()}>
             <div className="p-4 border-bottom d-flex align-items-center justify-content-between" style={{ backgroundColor: 'var(--teal-light)' }}>
               <div className="d-flex align-items-center gap-3">
-                <img 
-                  src={selectedDoctor.image} 
-                  alt={selectedDoctor.name} 
+                <img
+                  src={selectedDoctor.image}
+                  alt={selectedDoctor.name}
                   className="rounded-circle border"
                   style={{ width: '50px', height: '50px', objectFit: 'cover' }}
                 />
@@ -254,8 +252,8 @@ export default function DoctorsSection() {
                   <small className="text-muted">{selectedDoctor.specialty}</small>
                 </div>
               </div>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-sm btn-light rounded-circle p-2"
                 onClick={() => setSelectedDoctor(null)}
                 aria-label="Close"
@@ -292,15 +290,15 @@ export default function DoctorsSection() {
               </div>
 
               <div className="d-flex justify-content-end gap-2 pt-2 border-top">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn btn-light rounded-pill px-4"
                   onClick={() => setSelectedDoctor(null)}
                 >
                   Close
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn-primary-teal"
                   onClick={() => handleBookDoctor(selectedDoctor)}
                 >
@@ -314,8 +312,8 @@ export default function DoctorsSection() {
       )}
 
       {/* Appointment Booking Modal */}
-      <AppointmentModal 
-        isOpen={appointmentOpen} 
+      <AppointmentModal
+        isOpen={appointmentOpen}
         onClose={() => setAppointmentOpen(false)}
         initialData={appointmentInitialData}
       />

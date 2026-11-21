@@ -116,7 +116,7 @@ export default function ServicesSection() {
             const IconComponent = service.icon;
             return (
               <div key={service.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${idx + 1}`}>
-                <div 
+                <div
                   className="hospital-card h-100 d-flex flex-column"
                   style={{
                     borderRadius: '18px'
@@ -124,15 +124,13 @@ export default function ServicesSection() {
                 >
                   {/* Service Image with Top Overlay */}
                   <div className="position-relative overflow-hidden" style={{ height: '200px' }}>
-                    <img 
-                      src={service.image} 
-                      alt={service.title} 
-                      className="w-100 h-100"
-                      style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
-                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-100 h-100 img-scroll-zoom"
+                      style={{ objectFit: 'cover' }}
                     />
-                    <div 
+                    <div
                       className="position-absolute bottom-0 start-0 p-3 w-100 d-flex align-items-center justify-content-between"
                       style={{ background: 'linear-gradient(to top, rgba(10, 25, 47, 0.75), transparent)' }}
                     >
@@ -144,7 +142,7 @@ export default function ServicesSection() {
                   <div className="p-4 d-flex flex-column flex-grow-1">
                     {/* Icon & Title */}
                     <div className="d-flex align-items-center gap-3 mb-3">
-                      <div 
+                      <div
                         className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
                         style={{
                           width: '48px',
@@ -165,8 +163,8 @@ export default function ServicesSection() {
 
                     {/* Learn More Button */}
                     <div className="pt-2 border-top d-flex align-items-center justify-content-between">
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         className="btn btn-link p-0 text-decoration-none fw-bold text-teal d-inline-flex align-items-center gap-1"
                         onClick={() => setSelectedService(service)}
                       >
@@ -174,7 +172,7 @@ export default function ServicesSection() {
                         <ArrowRight size={16} />
                       </button>
 
-                      <button 
+                      <button
                         type="button"
                         className="btn btn-sm btn-light text-navy rounded-pill px-3"
                         onClick={() => handleBookFromService(service.title)}
@@ -197,7 +195,7 @@ export default function ServicesSection() {
             {/* Modal Header */}
             <div className="p-4 border-bottom d-flex align-items-center justify-content-between" style={{ backgroundColor: 'var(--teal-light)' }}>
               <div className="d-flex align-items-center gap-3">
-                <div 
+                <div
                   className="rounded-circle d-flex align-items-center justify-content-center text-white"
                   style={{ width: '44px', height: '44px', backgroundColor: 'var(--teal-primary)' }}
                 >
@@ -208,8 +206,8 @@ export default function ServicesSection() {
                   <small className="text-muted">Lead: {selectedService.leadDoctor}</small>
                 </div>
               </div>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-sm btn-light rounded-circle p-2"
                 onClick={() => setSelectedService(null)}
                 aria-label="Close"
@@ -221,10 +219,10 @@ export default function ServicesSection() {
             {/* Modal Content */}
             <div className="p-4">
               <div className="rounded-3 overflow-hidden mb-3" style={{ maxHeight: '220px' }}>
-                <img 
-                  src={selectedService.image} 
-                  alt={selectedService.title} 
-                  className="w-100 h-100" 
+                <img
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="w-100 h-100"
                   style={{ objectFit: 'cover' }}
                 />
               </div>
@@ -258,15 +256,15 @@ export default function ServicesSection() {
 
               {/* Actions */}
               <div className="d-flex justify-content-end gap-2 pt-2 border-top">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn btn-light rounded-pill px-4"
                   onClick={() => setSelectedService(null)}
                 >
                   Close
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn-primary-teal"
                   onClick={() => handleBookFromService(selectedService.title)}
                 >
@@ -280,9 +278,9 @@ export default function ServicesSection() {
       )}
 
       {/* Appointment Modal */}
-      <AppointmentModal 
-        isOpen={appointmentOpen} 
-        onClose={() => setAppointmentOpen(false)} 
+      <AppointmentModal
+        isOpen={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
         initialData={appointmentData || {}}
       />
     </section>

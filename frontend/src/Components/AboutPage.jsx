@@ -16,7 +16,10 @@ import {
   HeartHandshake
 } from 'lucide-react';
 
+import useScrollReveal from '../hooks/useScrollReveal';
+
 export default function AboutPage() {
+  useScrollReveal();
   const aboutSlides = [
     { src: '/images/contact/exterior.jpg', alt: 'Hospital Exterior and Architecture' },
     { src: '/images/about/reception.jpg', alt: 'Warm and Welcoming Hospital Reception' },

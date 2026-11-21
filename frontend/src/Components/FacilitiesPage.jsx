@@ -18,8 +18,10 @@ import {
   HeartHandshake
 } from 'lucide-react';
 import Modal from './Modal';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function FacilitiesPage() {
+  useScrollReveal();
   const [selectedFacility, setSelectedFacility] = useState(null);
 
   // 6 Image-based Facility Cards as specified

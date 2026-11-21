@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Calendar, ArrowRight, ShieldCheck, Heart, Award, Clock, Users } from 'lucide-react';
 import AppointmentModal from './AppointmentModal';
 
-function StatCount({ end, suffix = '', duration = 1200 }) {
+function StatCount({ end, suffix = '', duration = 1800 }) {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef(null);
@@ -14,7 +14,7 @@ function StatCount({ end, suffix = '', duration = 1200 }) {
           setHasStarted(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -26,7 +26,8 @@ function StatCount({ end, suffix = '', duration = 1200 }) {
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      // Apple-like smooth cubic ease-out curve
+      const ease = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(ease * end));
       if (progress < 1) {
         requestAnimationFrame(step);
@@ -166,7 +167,7 @@ export default function Hero() {
                 <img
                   src="/images/hero-doctor.jpg"
                   alt="Naira Hospital Healthcare Specialists"
-                  className="img-fluid w-100"
+                  className="img-fluid w-100 img-scroll-zoom"
                   style={{
                     maxHeight: '480px',
                     objectFit: 'cover',
