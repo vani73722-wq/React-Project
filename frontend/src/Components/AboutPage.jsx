@@ -21,9 +21,9 @@ import useScrollReveal from '../hooks/useScrollReveal';
 export default function AboutPage() {
   useScrollReveal();
   const aboutSlides = [
-    { src: '/images/contact/exterior.jpg', alt: 'Hospital Exterior and Architecture' },
-    { src: '/images/about/reception.jpg', alt: 'Warm and Welcoming Hospital Reception' },
     { src: '/images/about/interior.jpg', alt: 'Clean, Hygienic and Modern Hospital Environment' },
+    { src: '/images/about/reception.jpg', alt: 'Warm and Welcoming Hospital Reception' },
+    { src: '/images/about/team.jpg', alt: 'Distinguished Healthcare Team' },
   ];
 
   const coreValues = [

@@ -169,13 +169,13 @@ export default function FacilitiesPage() {
 
             <div className="col-lg-6">
               <img
-                src="/images/contact/exterior.jpg"
+                src="/images/facilities/building.jpg"
                 alt="NAIRA Multi-Speciality Hospital Exterior Infrastructure"
                 className="rounded-4 shadow-lg w-100 object-fit-cover border border-white border-3"
                 style={{ maxHeight: '380px' }}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/images/about/interior.jpg';
+                  e.target.src = '/images/facilities/patient-rooms.jpg';
                 }}
               />
             </div>

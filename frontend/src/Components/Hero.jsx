@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Calendar, ArrowRight, ShieldCheck, Heart, Award, Clock, Users } from 'lucide-react';
 import AppointmentModal from './AppointmentModal';
+import AutoHeroCarousel from './AutoHeroCarousel';
 
 function StatCount({ end, suffix = '', duration = 1800 }) {
   const [count, setCount] = useState(0);
@@ -114,7 +115,7 @@ export default function Hero() {
             <div className="d-flex flex-wrap align-items-center gap-3 pt-2 animate-hero-ctas">
               <button
                 type="button"
-                className="btn-primary-teal"
+                className="btn-green-glow"
                 onClick={() => setAppointmentOpen(true)}
               >
                 <Calendar size={18} />
@@ -123,7 +124,7 @@ export default function Hero() {
 
               <button
                 type="button"
-                className="btn-outline-teal"
+                className="btn-dark-blue"
                 onClick={handleExploreServices}
               >
                 <span>Explore Services</span>
@@ -152,52 +153,18 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Natural Hospital & Doctor Photography with Floating Badges */}
+          {/* Right Column: Premium Auto-Running Hero Carousel with Floating Badges */}
           <div className="col-lg-6 position-relative animate-hero-image">
-            <div className="position-relative mx-auto" style={{ maxWidth: '520px' }}>
-              {/* Main Doctor / Hospital Photo */}
-              <div
-                className="rounded-4 overflow-hidden shadow-lg border"
-                style={{
-                  borderColor: 'rgba(255,255,255,0.8)',
-                  position: 'relative',
-                  backgroundColor: '#ffffff'
-                }}
-              >
-                <img
-                  src="/images/hero-doctor.jpg"
-                  alt="Naira Hospital Healthcare Specialists"
-                  className="img-fluid w-100 img-scroll-zoom"
-                  style={{
-                    maxHeight: '480px',
-                    objectFit: 'cover',
-                    display: 'block'
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.src = '/src/assets/care.jpg';
-                  }}
-                />
-
-                {/* Subtle Gradient Overlay at bottom */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '80px',
-                    background: 'linear-gradient(to top, rgba(10, 25, 47, 0.4), transparent)'
-                  }}
-                />
-              </div>
+            <div className="position-relative mx-auto" style={{ maxWidth: '560px' }}>
+              <AutoHeroCarousel />
 
               {/* Floating Badge Top-Right: Rating */}
               <div
                 className="hero-floating-badge position-absolute d-none d-sm-flex"
                 style={{
-                  top: '25px',
+                  top: '-15px',
                   right: '-15px',
-                  zIndex: 2,
+                  zIndex: 12,
                   animation: 'floatSlow 4s ease-in-out infinite'
                 }}
               >
@@ -217,14 +184,14 @@ export default function Hero() {
               <div
                 className="hero-floating-badge position-absolute d-none d-sm-flex"
                 style={{
-                  bottom: '25px',
-                  left: '-20px',
-                  zIndex: 2
+                  bottom: '-15px',
+                  left: '-15px',
+                  zIndex: 12
                 }}
               >
                 <div
                   className="rounded-circle d-flex align-items-center justify-content-center text-white"
-                  style={{ width: '42px', height: '42px', backgroundColor: 'var(--teal-primary)' }}
+                  style={{ width: '42px', height: '42px', backgroundColor: '#00C853' }}
                 >
                   <ShieldCheck size={22} />
                 </div>

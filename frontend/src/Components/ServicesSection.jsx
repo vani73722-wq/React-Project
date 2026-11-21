@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { HeartPulse, Activity, Baby, Bone, Stethoscope, ArrowRight, CheckCircle2, Calendar, X } from 'lucide-react';
+import { HeartPulse, Activity, Baby, Bone, Stethoscope, ArrowRight, CheckCircle2, Calendar, X, Sparkles, Sun, Coffee, Smile, Phone } from 'lucide-react';
 import AppointmentModal from './AppointmentModal';
 
 export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState(null);
   const [appointmentData, setAppointmentData] = useState(null);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const [sundayModalOpen, setSundayModalOpen] = useState(false);
+  const [sundayRegistered, setSundayRegistered] = useState(false);
+  const [sundayName, setSundayName] = useState('');
+  const [sundayPhone, setSundayPhone] = useState('');
 
   const services = [
     {
@@ -186,7 +190,270 @@ export default function ServicesSection() {
             );
           })}
         </div>
+
+        {/* ==========================================================================
+            SUNDAY ONLY - FREE HEALTH MEETING (STRESS REDUCE PANNA FREE MEETING)
+            ========================================================================== */}
+        <div id="sunday-meeting" className="mt-5 pt-4 scroll-reveal">
+          <div className="sunday-meeting-card p-4 p-lg-5">
+            {/* Top Banner Tag */}
+            <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+              <div className="d-flex align-items-center gap-2">
+                <span className="badge rounded-pill bg-danger text-white px-3 py-2 fw-bold d-inline-flex align-items-center gap-1 shadow-sm">
+                  <Sun size={15} /> SUNDAY ONLY
+                </span>
+                <span className="badge rounded-pill bg-success text-white px-3 py-2 fw-bold shadow-sm">
+                  100% FREE ENTRY
+                </span>
+                <span className="badge rounded-pill bg-white text-navy px-3 py-2 fw-bold shadow-xs border">
+                  LIMITED 50 SEATS
+                </span>
+              </div>
+              <div className="small text-muted fw-semibold d-flex align-items-center gap-1">
+                <Calendar size={16} className="text-teal" /> Every Sunday • 10:00 AM - 01:00 PM
+              </div>
+            </div>
+
+            {/* Title & Tamil Subtitle */}
+            <div className="mb-4">
+              <h3 className="display-6 fw-bolder text-navy mb-2" style={{ letterSpacing: '-0.02em' }}>
+                SUNDAY ONLY — <span className="text-teal" style={{ background: 'var(--teal-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>FREE HEALTH MEETING</span>
+              </h3>
+              <p className="lead fw-bold text-pink-accent mb-2" style={{ fontSize: '1.25rem' }}>
+                "Stress Reduce Panna Free Meeting — Ellarukum Free!"
+              </p>
+              <p className="text-muted mb-0" style={{ maxWidth: '780px', lineHeight: '1.6' }}>
+                Join our complimentary community wellness gathering designed to help you de-stress, boost energy, and learn preventive care directly from expert physicians and wellness coaches. Open for all families!
+              </p>
+            </div>
+
+            {/* 4 Sunday Highlights Mini-Cards Grid */}
+            <div className="row g-3 mb-4">
+              {/* 1. Free Advice */}
+              <div className="col-12 col-sm-6 col-lg-3">
+                <div className="sunday-mini-card">
+                  <div style={{ height: '140px', overflow: 'hidden' }}>
+                    <img
+                      src="/images/sunday/advice.jpg"
+                      alt="Free Health Advice"
+                      className="w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="p-3">
+                    <div className="d-flex align-items-center gap-2 mb-1">
+                      <Heart size={16} className="text-teal flex-shrink-0" />
+                      <strong className="text-navy" style={{ fontSize: '0.95rem' }}>Free Health Advice</strong>
+                    </div>
+                    <small className="text-muted d-block" style={{ fontSize: '0.78rem', lineHeight: '1.4' }}>
+                      1-on-1 personalized health check, BP/Sugar screening & lifestyle consultation.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. Exercise & Yoga */}
+              <div className="col-12 col-sm-6 col-lg-3">
+                <div className="sunday-mini-card">
+                  <div style={{ height: '140px', overflow: 'hidden' }}>
+                    <img
+                      src="/images/sunday/yoga.jpg"
+                      alt="Exercise and Yoga Session"
+                      className="w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="p-3">
+                    <div className="d-flex align-items-center gap-2 mb-1">
+                      <Activity size={16} className="text-teal flex-shrink-0" />
+                      <strong className="text-navy" style={{ fontSize: '0.95rem' }}>Exercise Meeting</strong>
+                    </div>
+                    <small className="text-muted d-block" style={{ fontSize: '0.78rem', lineHeight: '1.4' }}>
+                      Gentle therapeutic yoga stretches, posture correction and light cardio for all ages.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Healthy Herbal Drinks */}
+              <div className="col-12 col-sm-6 col-lg-3">
+                <div className="sunday-mini-card">
+                  <div style={{ height: '140px', overflow: 'hidden' }}>
+                    <img
+                      src="/images/sunday/drinks.jpg"
+                      alt="Nutritious Herbal Drinks"
+                      className="w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="p-3">
+                    <div className="d-flex align-items-center gap-2 mb-1">
+                      <Coffee size={16} className="text-teal flex-shrink-0" />
+                      <strong className="text-navy" style={{ fontSize: '0.95rem' }}>Healthy Drinks</strong>
+                    </div>
+                    <small className="text-muted d-block" style={{ fontSize: '0.78rem', lineHeight: '1.4' }}>
+                      Complimentary fresh herbal decoctions & immunity-boosting nutritious health tonics.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Stress Relief Session */}
+              <div className="col-12 col-sm-6 col-lg-3">
+                <div className="sunday-mini-card">
+                  <div style={{ height: '140px', overflow: 'hidden' }}>
+                    <img
+                      src="/images/sunday/meditation.jpg"
+                      alt="Stress Relief & Meditation"
+                      className="w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="p-3">
+                    <div className="d-flex align-items-center gap-2 mb-1">
+                      <Smile size={16} className="text-teal flex-shrink-0" />
+                      <strong className="text-navy" style={{ fontSize: '0.95rem' }}>Stress Relief Session</strong>
+                    </div>
+                    <small className="text-muted d-block" style={{ fontSize: '0.78rem', lineHeight: '1.4' }}>
+                      Guided relaxation, peaceful breathwork & mindfulness techniques for mental clarity.
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Call to Actions */}
+            <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3 border-top border-white">
+              <div className="d-flex align-items-center gap-2 small text-slate-700">
+                <Sparkles size={18} className="text-success" />
+                <span>Venue: Naira Hospital Wellness Auditorium • Refreshments Included</span>
+              </div>
+
+              <div className="d-flex flex-wrap align-items-center gap-3">
+                <a
+                  href="tel:8940585378"
+                  className="btn-dark-blue"
+                >
+                  <Phone size={16} />
+                  <span>Call 8940585378</span>
+                </a>
+
+                <button
+                  type="button"
+                  className="btn-green-glow"
+                  onClick={() => {
+                    setSundayRegistered(false);
+                    setSundayModalOpen(true);
+                  }}
+                >
+                  <Calendar size={17} />
+                  <span>Register Free Sunday Seat</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Sunday Free Meeting Registration Modal */}
+      {sundayModalOpen && (
+        <div className="modal-backdrop-custom" onClick={() => setSundayModalOpen(false)}>
+          <div className="modal-content-custom" style={{ maxWidth: '540px' }} onClick={(e) => e.stopPropagation()}>
+            <div className="p-4 border-bottom d-flex align-items-center justify-content-between" style={{ backgroundColor: '#f0fdf4' }}>
+              <div className="d-flex align-items-center gap-2">
+                <Sun size={22} className="text-success" />
+                <h5 className="fw-bold mb-0 text-navy">Sunday Free Health Camp</h5>
+              </div>
+              <button
+                type="button"
+                className="btn btn-sm btn-light rounded-circle p-2 text-navy"
+                onClick={() => setSundayModalOpen(false)}
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="p-4">
+              {sundayRegistered ? (
+                <div className="text-center py-4">
+                  <div
+                    className="rounded-circle mx-auto d-flex align-items-center justify-content-center text-white mb-3"
+                    style={{ width: '60px', height: '60px', backgroundColor: '#00C853', boxShadow: '0 0 16px rgba(0,200,83,0.5)' }}
+                  >
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <h4 className="fw-bold text-navy mb-2">You're Registered!</h4>
+                  <p className="text-muted small mb-3">
+                    Your seat is reserved for this Sunday at 10:00 AM. Free health drink token sent to <strong>{sundayPhone}</strong>.
+                  </p>
+                  <div className="p-3 bg-light rounded-3 text-start small mb-4">
+                    <div>📍 <strong>Venue:</strong> Naira Hospital Auditorium, Sivakasi</div>
+                    <div>🕒 <strong>Time:</strong> 10:00 AM - 01:00 PM</div>
+                    <div>🎟️ <strong>Admission:</strong> 100% Free (Refreshments included)</div>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-green-glow px-4"
+                    onClick={() => setSundayModalOpen(false)}
+                  >
+                    Done
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!sundayName || !sundayPhone) return;
+                    setSundayRegistered(true);
+                  }}
+                >
+                  <p className="small text-muted mb-3">
+                    Reserve your free seat for the upcoming Sunday Health & Stress Reduction Meeting.
+                  </p>
+                  <div className="mb-3">
+                    <label className="form-label small fw-semibold text-navy">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      className="form-control form-control-custom"
+                      placeholder="Enter your name"
+                      value={sundayName}
+                      onChange={(e) => setSundayName(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="form-label small fw-semibold text-navy">WhatsApp / Mobile Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      className="form-control form-control-custom"
+                      placeholder="e.g. 9876543210"
+                      value={sundayPhone}
+                      onChange={(e) => setSundayPhone(e.target.value)}
+                    />
+                  </div>
+                  <div className="d-flex justify-content-end gap-2">
+                    <button
+                      type="button"
+                      className="btn btn-light rounded-pill px-4"
+                      onClick={() => setSundayModalOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn-green-glow"
+                    >
+                      Confirm Free Registration
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Service Learn More Modal */}
       {selectedService && (

@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Search, Phone, Clock, MapPin, Menu, X, Calendar } from 'lucide-react';
+import { Search, Phone, Clock, MapPin, Menu, X, Calendar, Activity } from 'lucide-react';
 import logo from '../assets/Naira.jpg';
 import SearchModal from './SearchModal';
 import AppointmentModal from './AppointmentModal';
+import LiveDoctorsModal from './LiveDoctorsModal';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const [liveDoctorsOpen, setLiveDoctorsOpen] = useState(false);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,13 +28,17 @@ export default function Navbar() {
     { name: 'Home', path: '/', hash: '#home' },
     { name: 'About Us', path: '/about', hash: '#about' },
     { name: 'Services', path: '/services', hash: '#services' },
-    { name: 'Doctors', path: '/doctors', hash: '#doctors' },
-    { name: 'Facilities', path: '/facilities', hash: '#facilities' },
+    { name: 'LIVE DOCTORS', isLive: true },
+    { name: 'Sunday Free Meeting', path: '/services', hash: '#sunday-meeting' },
     { name: 'Contact', path: '/contact', hash: '#contact' },
   ];
 
   const handleNavClick = (link) => {
     setIsOpen(false);
+    if (link.isLive) {
+      setLiveDoctorsOpen(true);
+      return;
+    }
     if (location.pathname === '/' || location.pathname === '') {
       const el = document.querySelector(link.hash);
       if (el) {
@@ -107,16 +113,34 @@ export default function Navbar() {
 
           {/* Desktop Nav Items */}
           <div className="d-none d-lg-flex align-items-center gap-1">
-            {navLinks.map((link, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className="btn btn-link text-decoration-none nav-link-custom"
-                onClick={() => handleNavClick(link)}
-              >
-                {link.name}
-              </button>
-            ))}
+            {navLinks.map((link, idx) => {
+              if (link.isLive) {
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    className="btn-live-doctors mx-2"
+                    onClick={() => handleNavClick(link)}
+                    title="View Live OPD Doctors & Real-Time Availability"
+                  >
+                    <span className="live-badge-top">LIVE</span>
+                    <span className="live-pulse-dot" />
+                    <span>LIVE DOCTORS</span>
+                    <span style={{ fontSize: '0.9rem' }}>🟢</span>
+                  </button>
+                );
+              }
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  className="btn btn-link text-decoration-none nav-link-custom"
+                  onClick={() => handleNavClick(link)}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
           </div>
 
           {/* Action Buttons: Search & Book Appointment */}
@@ -136,7 +160,7 @@ export default function Navbar() {
             {/* Book Appointment Button */}
             <button
               type="button"
-              className="btn-primary-teal d-none d-sm-inline-flex"
+              className="btn-green-glow d-none d-sm-inline-flex"
               onClick={() => setAppointmentOpen(true)}
             >
               <Calendar size={17} />
@@ -159,23 +183,38 @@ export default function Navbar() {
         {isOpen && (
           <div className="d-lg-none w-100 bg-white border-top mt-2 py-3 px-4 shadow-lg animate__animated animate__fadeIn">
             <div className="d-flex flex-column gap-2 mb-3">
-              {navLinks.map((link, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  className="btn btn-light text-start py-2 px-3 fw-medium text-navy border-0 rounded-2"
-                  style={{ backgroundColor: 'var(--slate-50)' }}
-                  onClick={() => handleNavClick(link)}
-                >
-                  {link.name}
-                </button>
-              ))}
+              {navLinks.map((link, idx) => {
+                if (link.isLive) {
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      className="btn-live-doctors w-100 justify-content-center py-2"
+                      onClick={() => handleNavClick(link)}
+                    >
+                      <span className="live-pulse-dot" />
+                      <span>LIVE DOCTORS 🟢 (Check Wait Times)</span>
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    className="btn btn-light text-start py-2 px-3 fw-medium text-navy border-0 rounded-2"
+                    style={{ backgroundColor: 'var(--slate-50)' }}
+                    onClick={() => handleNavClick(link)}
+                  >
+                    {link.name}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="d-flex flex-column gap-2 pt-2 border-top">
               <button
                 type="button"
-                className="btn-primary-teal w-100 justify-content-center py-2"
+                className="btn-green-glow w-100 justify-content-center py-2"
                 onClick={() => {
                   setIsOpen(false);
                   setAppointmentOpen(true);
@@ -214,6 +253,16 @@ export default function Navbar() {
       <AppointmentModal 
         isOpen={appointmentOpen} 
         onClose={() => setAppointmentOpen(false)} 
+      />
+
+      {/* Live Doctors Availability & Token Queue Modal */}
+      <LiveDoctorsModal
+        isOpen={liveDoctorsOpen}
+        onClose={() => setLiveDoctorsOpen(false)}
+        onBookAppointment={() => {
+          setLiveDoctorsOpen(false);
+          setAppointmentOpen(true);
+        }}
       />
     </>
   );

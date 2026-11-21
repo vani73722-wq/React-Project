@@ -343,19 +343,22 @@ export default function DoctorsPage() {
 
                     {/* Action Buttons */}
                     <div className="p-3 pt-0 d-flex flex-column gap-2">
-                      <button
-                        type="button"
-                        className="btn-secondary-custom btn-sm w-100 justify-content-center"
-                        onClick={() => setSelectedDoctor(doc)}
-                      >
-                        View Profile
-                      </button>
                       <Link
                         to={`/appointment?doctor=${encodeURIComponent(doc.name)}&department=${encodeURIComponent(doc.department)}`}
-                        className="btn-primary-custom btn-sm w-100 justify-content-center"
+                        className="btn-green-glow w-100 justify-content-center py-2"
+                        style={{ fontSize: '0.85rem' }}
                       >
-                        Book Appointment
+                        <Calendar size={15} />
+                        <span>Book Appointment</span>
                       </Link>
+                      <button
+                        type="button"
+                        className="btn-white-blue w-100 justify-content-center py-2"
+                        style={{ fontSize: '0.85rem' }}
+                        onClick={() => setSelectedDoctor(doc)}
+                      >
+                        View Full Profile
+                      </button>
                     </div>
                   </div>
                 </div>

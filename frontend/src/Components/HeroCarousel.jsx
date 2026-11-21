@@ -1,28 +1,26 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import NairaImg from '../assets/Naira.jpg';
-import HospicImg from '../assets/hospic.png';
-import ScanImg from '../assets/scan.jpg';
-import CareImg from '../assets/care.jpg';
 
 /**
- * Premium Hero Carousel for the NAIRA Hospital Home Page.
- * Strictly preserves the existing images: Naira.jpg, hospic.png, scan.jpg, care.jpg.
- * Automatic sliding, manual arrows, dots indicators, rounded corners, no text overlay.
+ * Premium Hero Carousel for NAIRA Multi-Speciality Hospital.
+ * Auto-runs every 3 seconds in infinite loop.
+ * 3 distinct premium hospital images:
+ * 1. Modern hospital building / reception
+ * 2. Caring doctor with patient
+ * 3. Newborn baby and maternal care
  */
 export default function HeroCarousel() {
   const images = [
-    { src: NairaImg, alt: 'NAIRA Hospital Building & Exterior' },
-    { src: HospicImg, alt: 'NAIRA Hospital Modern Facilities' },
-    { src: ScanImg, alt: 'Diagnostic Imaging and Advanced Scans' },
-    { src: CareImg, alt: 'Compassionate Patient Care and Healing' },
+    { src: '/images/carousel/carousel-1.jpg', alt: 'NAIRA Hospital Reception & Modern Infrastructure' },
+    { src: '/images/carousel/carousel-2.jpg', alt: 'Caring Doctor Consulting Patient with Compassion' },
+    { src: '/images/carousel/carousel-3.jpg', alt: 'Newborn Baby & Maternity Advanced Clinical Wing' },
   ];
 
   return (
     <div className="position-relative shadow-lg rounded-4 overflow-hidden border border-white border-3">
       <Carousel
         fade
-        interval={4500}
+        interval={3000}
         controls={true}
         indicators={true}
         pause="hover"

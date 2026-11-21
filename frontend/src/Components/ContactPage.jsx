@@ -504,8 +504,8 @@ export default function ContactPage() {
             <div className="row align-items-center g-4">
               <div className="col-md-3 text-center">
                 <img
-                  src="/images/about/team.jpg"
-                  alt="Hospital Leadership"
+                  src="/images/contact/director.jpg"
+                  alt="Hospital Leadership - Dr. N. Aravind"
                   className="rounded-circle shadow object-fit-cover mx-auto"
                   style={{ width: '150px', height: '150px' }}
                 />

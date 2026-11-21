@@ -7,6 +7,7 @@ export default function DoctorsSection() {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [appointmentInitialData, setAppointmentInitialData] = useState({});
+  const [activeCardId, setActiveCardId] = useState(null);
 
   const allDoctors = [
     {
@@ -148,78 +149,101 @@ export default function DoctorsSection() {
           </p>
         </div>
 
-        {/* Doctors Grid with Staggered Scroll Reveal */}
-        <div className="row g-4">
-          {visibleDoctors.map((doc, idx) => (
-            <div key={doc.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${(idx % 6) + 1}`}>
-              <div
-                className="hospital-card h-100 d-flex flex-column"
-                style={{
-                  borderRadius: '18px'
-                }}
-              >
-                {/* Doctor Portrait */}
-                <div className="position-relative overflow-hidden" style={{ height: '260px', backgroundColor: '#f1f5f9' }}>
-                  <img
-                    src={doc.image}
-                    alt={doc.name}
-                    className="w-100 h-100 img-scroll-zoom"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                  <div
-                    className="position-absolute bottom-0 start-0 w-100 p-2 px-3 d-flex justify-content-between align-items-center"
-                    style={{ background: 'linear-gradient(to top, rgba(10, 25, 47, 0.8), transparent)' }}
-                  >
-                    <span className="badge rounded-pill" style={{ backgroundColor: 'var(--teal-primary)', color: '#ffffff', fontSize: '0.78rem' }}>
-                      {doc.specialty}
-                    </span>
-                    <span className="text-white small fw-bold d-flex align-items-center gap-1">
-                      <Star size={13} fill="#f59e0b" color="#f59e0b" /> {doc.rating}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Doctor Card Content */}
-                <div className="p-4 d-flex flex-column flex-grow-1">
-                  <h4 className="fw-bold mb-1 text-navy">{doc.name}</h4>
-                  <small className="text-muted d-block mb-3">{doc.degree}</small>
-
-                  <div className="d-flex flex-column gap-2 mb-4 small text-slate-600 flex-grow-1">
-                    <div className="d-flex align-items-center gap-2">
-                      <Award size={16} className="text-teal flex-shrink-0" />
-                      <span>{doc.experience}</span>
-                    </div>
-                    <div className="d-flex align-items-center gap-2">
-                      <Clock size={16} className="text-teal flex-shrink-0" />
-                      <span>OPD: {doc.timings}</span>
+        {/* Doctors Grid with Interactive Curtain & Hover/Touch Details Reveal */}
+        <div className="row g-4" id="live-doctors">
+          {visibleDoctors.map((doc, idx) => {
+            const isActive = activeCardId === doc.id;
+            return (
+              <div key={doc.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${(idx % 6) + 1}`}>
+                <div
+                  className={`doctor-interactive-card h-100 d-flex flex-column ${isActive ? 'is-active' : ''}`}
+                  onClick={() => setActiveCardId(isActive ? null : doc.id)}
+                  title="Hover or tap to view doctor qualifications and instant booking"
+                >
+                  {/* Doctor Portrait with Bottom-to-Top Curtain Reveal Effect */}
+                  <div className="doctor-curtain-wrap position-relative">
+                    <img
+                      src={doc.image}
+                      alt={doc.name}
+                      className="img-scroll-zoom"
+                    />
+                    <div
+                      className="position-absolute bottom-0 start-0 w-100 p-2 px-3 d-flex justify-content-between align-items-center"
+                      style={{ background: 'linear-gradient(to top, rgba(7, 31, 61, 0.88), transparent)', zIndex: 3 }}
+                    >
+                      <span className="badge rounded-pill" style={{ backgroundColor: '#00C853', color: '#ffffff', fontSize: '0.78rem', fontWeight: 600 }}>
+                        {doc.specialty}
+                      </span>
+                      <span className="text-white small fw-bold d-flex align-items-center gap-1">
+                        <Star size={13} fill="#f59e0b" color="#f59e0b" /> {doc.rating}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Actions */}
-                  <div className="pt-3 border-top d-flex align-items-center justify-content-between">
-                    <button
-                      type="button"
-                      className="btn btn-link p-0 text-decoration-none fw-bold text-teal d-inline-flex align-items-center gap-1"
-                      onClick={() => setSelectedDoctor(doc)}
-                    >
-                      <span>View Profile</span>
-                      <ArrowRight size={15} />
-                    </button>
+                  {/* Doctor Card Content */}
+                  <div className="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                    <div>
+                      {/* Name & Specialty Always Visible */}
+                      <h4 className="fw-bold mb-1 text-navy">{doc.name}</h4>
+                      <div className="text-teal small fw-semibold mb-2">{doc.department} Specialist</div>
 
-                    <button
-                      type="button"
-                      className="btn-primary-teal py-1 px-3"
-                      style={{ fontSize: '0.85rem' }}
-                      onClick={() => handleBookDoctor(doc)}
-                    >
-                      <Calendar size={14} />
-                      <span>Book</span>
-                    </button>
+                      {/* Hidden details that smoothly reveal on hover/touch */}
+                      <div className="doctor-hidden-details pt-2">
+                        <small className="text-muted d-block mb-3 fw-medium" style={{ lineHeight: '1.4' }}>
+                          🎓 {doc.degree}
+                        </small>
+
+                        <div className="d-flex flex-column gap-2 mb-3 small text-slate-700">
+                          <div className="d-flex align-items-center gap-2">
+                            <Award size={16} className="text-teal flex-shrink-0" />
+                            <span>{doc.experience}</span>
+                          </div>
+                          <div className="d-flex align-items-center gap-2">
+                            <Clock size={16} className="text-teal flex-shrink-0" />
+                            <span>OPD: {doc.timings}</span>
+                          </div>
+                        </div>
+
+                        {/* Interactive Buttons */}
+                        <div className="pt-2 d-flex flex-wrap align-items-center gap-2">
+                          <button
+                            type="button"
+                            className="btn-green-glow flex-grow-1"
+                            style={{ padding: '0.55rem 1rem', fontSize: '0.84rem' }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBookDoctor(doc);
+                            }}
+                          >
+                            <Calendar size={14} />
+                            <span>Book Now</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            className="btn-white-blue"
+                            style={{ padding: '0.52rem 0.9rem', fontSize: '0.84rem' }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedDoctor(doc);
+                            }}
+                          >
+                            <span>Profile</span>
+                            <ArrowRight size={13} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Touch Hint For Mobile Devices */}
+                    <div className="pt-2 d-md-none text-muted" style={{ fontSize: '0.72rem' }}>
+                      {isActive ? 'Tap again to collapse' : 'Tap to reveal full OPD schedule & book'}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* View All Doctors Button */}
