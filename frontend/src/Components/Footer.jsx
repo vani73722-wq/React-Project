@@ -28,6 +28,9 @@ export default function Footer() {
                 alt="NAIRA HOSPITAL" 
                 className="rounded-circle"
                 style={{ width: '42px', height: '42px', objectFit: 'cover', border: '2px solid var(--teal-primary)' }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <div>
                 <h5 className="fw-bolder mb-0 text-white" style={{ letterSpacing: '0.03em' }}>

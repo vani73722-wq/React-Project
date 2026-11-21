@@ -24,7 +24,7 @@ html, body {
   width: 100%;
   min-height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--light-blue);
+  background-color: #ffffff !important;
   color: var(--text-dark);
   line-height: 1.6;
   scroll-behavior: smooth;

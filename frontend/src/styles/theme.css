@@ -587,31 +587,31 @@ html {
   animation-delay: 0.3s;
 }
 
-/* 4. PREMIUM SCROLL REVEAL & STAGGERED CASCADE */
+/* 4. PREMIUM SCROLL REVEAL & STAGGERED CASCADE - SAFE DEFAULT (ALWAYS VISIBLE) */
 .scroll-reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-reveal.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-/* Image Zoom-In + Fade-In On Scroll */
+/* Image Zoom-In + Fade-In On Scroll - SAFE DEFAULT (ALWAYS VISIBLE) */
 .img-scroll-zoom {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1), transform 1.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.8s ease, transform 0.8s ease !important;
   will-change: opacity, transform;
 }
 
 .scroll-reveal.is-revealed .img-scroll-zoom,
 .img-scroll-zoom.is-revealed {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Staggered Delay for Doctor & Service Cards (Butter-Smooth Cascade) */
@@ -968,29 +968,8 @@ html {
 }
 
 /* ==========================================================================
-   PAGE PRELOADER ANIMATION
+   PAGE PRELOADER - DISABLED TO PREVENT BLANK SCREEN
    ========================================================================== */
 .page-preloader {
-  position: fixed;
-  inset: 0;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.preloader-pulse-ring {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 3px solid rgba(0, 200, 83, 0.25);
-  border-top-color: #00C853;
-  animation: spinSlow 0.9s linear infinite;
-}
-
-@keyframes spinSlow {
-  to { transform: rotate(360deg); }
+  display: none !important;
 }

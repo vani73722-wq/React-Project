@@ -7,26 +7,20 @@ import FacilitiesSection from './FacilitiesSection';
 import TestimonialsSection from './TestimonialsSection';
 import ContactSection from './ContactSection';
 import useScrollReveal from '../hooks/useScrollReveal';
-import { Phone, ArrowUp, ShieldAlert, HeartPulse } from 'lucide-react';
+import { Phone, ArrowUp } from 'lucide-react';
 
 export default function HomePage() {
   useScrollReveal();
 
-  const [loading, setLoading] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 450);
-
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -36,17 +30,16 @@ export default function HomePage() {
   };
 
   return (
-    <main className="w-100 overflow-hidden position-relative">
-      {/* 0. Initial Page Preloader */}
-      {loading && (
-        <div className="page-preloader">
-          <div className="preloader-pulse-ring mb-3" />
-          <div className="fw-bolder text-navy h5 mb-0" style={{ letterSpacing: '0.04em' }}>
-            NAIRA <span className="text-teal">HOSPITAL</span>
-          </div>
-          <small className="text-muted">Loading Care & Excellence...</small>
-        </div>
-      )}
+    <main className="w-100 overflow-hidden position-relative" style={{ backgroundColor: '#ffffff' }}>
+      {/* 0. VERIFICATION TEST HEADER (AS REQUESTED) */}
+      <div 
+        className="text-center py-2 border-bottom shadow-xs" 
+        style={{ backgroundColor: '#e6f0fa', color: '#071f3d' }}
+      >
+        <h1 className="h6 fw-bolder mb-0" style={{ letterSpacing: '0.05em' }}>
+          NAIRA HOSPITAL TEST — FULL WEBSITE OPERATIONAL
+        </h1>
+      </div>
 
       {/* 1. Hero Section (Split Layout: Text on Left, Auto-Running Infinite 3-Slide Carousel on Right) */}
       <Hero />

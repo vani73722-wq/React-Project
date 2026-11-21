@@ -12,7 +12,7 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [liveDoctorsOpen, setLiveDoctorsOpen] = useState(false);
-  
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <>
       {/* Top Notification & Emergency Bar */}
-      <div 
+      <div
         className="d-none d-lg-block border-bottom py-2 small"
         style={{ backgroundColor: 'var(--navy)', color: 'rgba(255, 255, 255, 0.85)' }}
       >
@@ -70,8 +70,8 @@ export default function Navbar() {
 
           <div className="d-flex align-items-center gap-3">
             <span className="badge rounded-pill bg-danger px-2 py-1 fw-bold">24/7 EMERGENCY</span>
-            <a 
-              href="tel:8940585378" 
+            <a
+              href="tel:8940585378"
               className="text-white fw-bold d-flex align-items-center gap-2"
               style={{ textDecoration: 'none' }}
             >
@@ -83,23 +83,25 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar with Smooth Scroll Transition */}
-      <nav 
-        className={`navbar navbar-expand-lg sticky-top navbar-custom py-2 py-lg-3 ${
-          isScrolled ? 'is-scrolled shadow-sm' : ''
-        }`}
+      <nav
+        className={`navbar navbar-expand-lg sticky-top navbar-custom py-2 py-lg-3 ${isScrolled ? 'is-scrolled shadow-sm' : ''
+          }`}
       >
         <div className="container-xl d-flex align-items-center justify-content-between">
           {/* Brand Logo & Name */}
-          <div 
-            className="d-flex align-items-center gap-2" 
+          <div
+            className="d-flex align-items-center gap-2"
             style={{ cursor: 'pointer' }}
             onClick={() => handleNavClick({ path: '/', hash: '#home' })}
           >
-            <img 
-              src={logo} 
-              alt="NAIRA HOSPITAL Logo" 
+            <img
+              src={logo}
+              alt="NAIRA HOSPITAL Logo"
               className="rounded-circle shadow-sm"
               style={{ width: '42px', height: '42px', objectFit: 'cover', border: '2px solid var(--teal-primary)' }}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
             />
             <div>
               <span className="h5 fw-bolder mb-0 d-block" style={{ color: 'var(--navy)', letterSpacing: '0.02em' }}>
@@ -237,8 +239,8 @@ export default function Navbar() {
       </nav>
 
       {/* Global Interactive Modals */}
-      <SearchModal 
-        isOpen={searchOpen} 
+      <SearchModal
+        isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         onSelectAction={(item) => {
           if (location.pathname === '/' || location.pathname === '') {
@@ -250,9 +252,9 @@ export default function Navbar() {
         }}
       />
 
-      <AppointmentModal 
-        isOpen={appointmentOpen} 
-        onClose={() => setAppointmentOpen(false)} 
+      <AppointmentModal
+        isOpen={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
       />
 
       {/* Live Doctors Availability & Token Queue Modal */}
