@@ -76,10 +76,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* Main Navbar with Smooth Scroll Transition */}
       <nav 
         className={`navbar navbar-expand-lg sticky-top navbar-custom py-2 py-lg-3 ${
-          isScrolled ? 'shadow-sm' : ''
+          isScrolled ? 'is-scrolled shadow-sm' : ''
         }`}
       >
         <div className="container-xl d-flex align-items-center justify-content-between">

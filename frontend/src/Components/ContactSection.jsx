@@ -60,7 +60,7 @@ export default function ContactSection() {
     <section id="contact" className="py-5 py-lg-6" style={{ backgroundColor: 'var(--slate-50)' }}>
       <div className="container-xl">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 scroll-reveal">
           <div className="section-tag">
             <span>24/7 Help & Assistance</span>
           </div>
@@ -72,7 +72,7 @@ export default function ContactSection() {
 
         <div className="row g-5 align-items-stretch">
           {/* Left Column: Hospital Contact Details & Live Map */}
-          <div className="col-lg-5 d-flex flex-column justify-content-between">
+          <div className="col-lg-5 d-flex flex-column justify-content-between scroll-reveal stagger-1">
             <div className="d-flex flex-column gap-3 mb-4">
               {/* Address Card */}
               <div className="p-3 bg-white rounded-3 border d-flex align-items-start gap-3 shadow-xs">
@@ -158,7 +158,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Premium Interactive Contact Form */}
-          <div className="col-lg-7">
+          <div className="col-lg-7 scroll-reveal stagger-2">
             <div 
               className="bg-white p-4 p-md-5 rounded-4 border shadow-sm h-100 d-flex flex-column justify-content-between"
             >

@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
     <section className="py-5 py-lg-6" style={{ backgroundColor: 'var(--white)' }}>
       <div className="container-xl">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 scroll-reveal">
           <div className="section-tag">
             <span>Patient Experiences</span>
           </div>
@@ -45,10 +45,10 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* 3 Testimonials Grid */}
+        {/* 3 Testimonials Grid with Staggered Scroll Reveal */}
         <div className="row g-4">
-          {testimonials.map((item) => (
-            <div key={item.id} className="col-lg-4">
+          {testimonials.map((item, idx) => (
+            <div key={item.id} className={`col-lg-4 scroll-reveal stagger-${idx + 1}`}>
               <div className="testimonial-card">
                 <div>
                   {/* Top: Quote Icon & Stars */}

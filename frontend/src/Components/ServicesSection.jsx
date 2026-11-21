@@ -100,7 +100,7 @@ export default function ServicesSection() {
     <section id="services" className="py-5 py-lg-6" style={{ backgroundColor: 'var(--white)' }}>
       <div className="container-xl">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 scroll-reveal">
           <div className="section-tag">
             <span>Specialized Medical Services</span>
           </div>
@@ -110,17 +110,16 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* 5 Service Cards Grid */}
+        {/* 5 Service Cards Grid with Staggered Scroll Reveal */}
         <div className="row g-4 justify-content-center">
-          {services.map((service) => {
+          {services.map((service, idx) => {
             const IconComponent = service.icon;
             return (
-              <div key={service.id} className="col-md-6 col-lg-4">
+              <div key={service.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${idx + 1}`}>
                 <div 
                   className="hospital-card h-100 d-flex flex-column"
                   style={{
-                    borderRadius: '18px',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                    borderRadius: '18px'
                   }}
                 >
                   {/* Service Image with Top Overlay */}

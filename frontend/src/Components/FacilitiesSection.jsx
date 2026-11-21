@@ -67,7 +67,7 @@ export default function FacilitiesSection() {
     <section id="facilities" className="py-5 py-lg-6" style={{ backgroundColor: 'var(--slate-50)' }}>
       <div className="container-xl">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 scroll-reveal">
           <div className="section-tag">
             <Building size={16} />
             <span>Infrastructure & Technology</span>
@@ -78,10 +78,10 @@ export default function FacilitiesSection() {
           </p>
         </div>
 
-        {/* 4 Facilities Grid */}
+        {/* 4 Facilities Grid with Staggered Scroll Reveal */}
         <div className="row g-4">
-          {facilities.map((facility) => (
-            <div key={facility.id} className="col-md-6">
+          {facilities.map((facility, idx) => (
+            <div key={facility.id} className={`col-md-6 scroll-reveal stagger-${idx + 1}`}>
               <div 
                 className="hospital-card h-100 overflow-hidden d-flex flex-column"
                 style={{

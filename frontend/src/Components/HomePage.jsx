@@ -5,8 +5,11 @@ import DoctorsSection from './DoctorsSection';
 import FacilitiesSection from './FacilitiesSection';
 import TestimonialsSection from './TestimonialsSection';
 import ContactSection from './ContactSection';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function HomePage() {
+  useScrollReveal();
+
   return (
     <main className="w-100 overflow-hidden">
       {/* 1. Hero Section (Split Layout: Text on Left, Hospital/Doctor Photography on Right) */}

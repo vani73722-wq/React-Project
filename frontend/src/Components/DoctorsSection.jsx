@@ -138,7 +138,7 @@ export default function DoctorsSection() {
     <section id="doctors" className="py-5 py-lg-6" style={{ backgroundColor: 'var(--white)' }}>
       <div className="container-xl">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 scroll-reveal">
           <div className="section-tag">
             <span>Specialist Medical Team</span>
           </div>
@@ -148,15 +148,14 @@ export default function DoctorsSection() {
           </p>
         </div>
 
-        {/* Doctors Grid */}
+        {/* Doctors Grid with Staggered Scroll Reveal */}
         <div className="row g-4">
-          {visibleDoctors.map((doc) => (
-            <div key={doc.id} className="col-md-6 col-lg-4">
+          {visibleDoctors.map((doc, idx) => (
+            <div key={doc.id} className={`col-md-6 col-lg-4 scroll-reveal stagger-${(idx % 6) + 1}`}>
               <div 
                 className="hospital-card h-100 d-flex flex-column"
                 style={{
-                  borderRadius: '18px',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                  borderRadius: '18px'
                 }}
               >
                 {/* Doctor Portrait */}

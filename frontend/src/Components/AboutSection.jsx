@@ -9,7 +9,7 @@ export default function AboutSection() {
       <div className="container-xl">
         <div className="row align-items-center g-5">
           {/* Left Column: Hospital Reception Photograph */}
-          <div className="col-lg-6">
+          <div className="col-lg-6 scroll-reveal stagger-1">
             <div className="position-relative mx-auto" style={{ maxWidth: '520px' }}>
               <div 
                 className="rounded-4 overflow-hidden shadow-lg border"
@@ -46,7 +46,7 @@ export default function AboutSection() {
           </div>
 
           {/* Right Column: Content */}
-          <div className="col-lg-6">
+          <div className="col-lg-6 scroll-reveal stagger-2">
             <div className="section-tag">
               <span>About Naira Hospital</span>
             </div>

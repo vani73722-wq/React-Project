@@ -1,6 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Calendar, ArrowRight, ShieldCheck, Heart, Award, Clock, Users } from 'lucide-react';
 import AppointmentModal from './AppointmentModal';
+
+function StatCount({ end, suffix = '', duration = 1200 }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    let startTime = null;
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(ease * end));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setCount(end);
+      }
+    };
+    requestAnimationFrame(step);
+  }, [hasStarted, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function Hero() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -17,7 +55,7 @@ export default function Hero() {
   return (
     <section id="home" className="py-5 py-lg-6 position-relative overflow-hidden" style={{ backgroundColor: 'var(--slate-50)' }}>
       {/* Decorative Background Blob */}
-      <div 
+      <div
         style={{
           position: 'absolute',
           top: '-15%',
@@ -35,15 +73,15 @@ export default function Hero() {
         <div className="row align-items-center g-5">
           {/* Left Column: Heading, Subtitle & CTAs */}
           <div className="col-lg-6">
-            <div className="section-tag">
+            <div className="section-tag animate-hero-badge">
               <ShieldCheck size={16} />
               <span>Leading Healthcare in Sivakasi</span>
             </div>
 
-            <h1 
-              className="display-4 fw-bolder mb-3" 
-              style={{ 
-                color: 'var(--navy)', 
+            <h1
+              className="display-4 fw-bolder mb-3 animate-hero-title"
+              style={{
+                color: 'var(--navy)',
                 lineHeight: 1.15,
                 letterSpacing: '-0.03em'
               }}
@@ -54,12 +92,12 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="lead text-muted mb-4" style={{ fontSize: '1.18rem', lineHeight: '1.6', maxWidth: '540px' }}>
+            <p className="lead text-muted mb-4 animate-hero-subtitle" style={{ fontSize: '1.18rem', lineHeight: '1.6', maxWidth: '540px' }}>
               Expert care, modern facilities, and a team dedicated to you. Experience personalized medical attention backed by advanced diagnostics and 24/7 critical emergency response.
             </p>
 
             {/* Quick Benefits Bullet List */}
-            <div className="d-flex flex-wrap gap-3 mb-4 small text-slate-700">
+            <div className="d-flex flex-wrap gap-3 mb-4 small text-slate-700 animate-hero-bullets">
               <span className="d-inline-flex align-items-center gap-1 fw-semibold text-navy">
                 <Heart size={16} className="text-teal" /> 24/7 Emergency & ICU
               </span>
@@ -72,9 +110,9 @@ export default function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="d-flex flex-wrap align-items-center gap-3 pt-2">
-              <button 
-                type="button" 
+            <div className="d-flex flex-wrap align-items-center gap-3 pt-2 animate-hero-ctas">
+              <button
+                type="button"
                 className="btn-primary-teal"
                 onClick={() => setAppointmentOpen(true)}
               >
@@ -82,8 +120,8 @@ export default function Hero() {
                 <span>Book Appointment</span>
               </button>
 
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn-outline-teal"
                 onClick={handleExploreServices}
               >
@@ -92,14 +130,18 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Trust Stats Bar */}
-            <div className="row g-3 pt-4 mt-3 border-top">
+            {/* Trust Stats Bar with Smooth Count-Up Animation */}
+            <div className="row g-3 pt-4 mt-3 border-top animate-hero-stats">
               <div className="col-4">
-                <h3 className="fw-bolder mb-0 text-navy">10+</h3>
+                <h3 className="fw-bolder mb-0 text-navy">
+                  <StatCount end={10} suffix="+" />
+                </h3>
                 <small className="text-muted">Years of Trust</small>
               </div>
               <div className="col-4">
-                <h3 className="fw-bolder mb-0 text-navy">50k+</h3>
+                <h3 className="fw-bolder mb-0 text-navy">
+                  <StatCount end={50} suffix="k+" />
+                </h3>
                 <small className="text-muted">Patients Treated</small>
               </div>
               <div className="col-4">
@@ -110,34 +152,33 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Natural Hospital & Doctor Photography with Floating Badges */}
-          <div className="col-lg-6 position-relative">
+          <div className="col-lg-6 position-relative animate-hero-image">
             <div className="position-relative mx-auto" style={{ maxWidth: '520px' }}>
               {/* Main Doctor / Hospital Photo */}
-              <div 
+              <div
                 className="rounded-4 overflow-hidden shadow-lg border"
-                style={{ 
+                style={{
                   borderColor: 'rgba(255,255,255,0.8)',
                   position: 'relative',
                   backgroundColor: '#ffffff'
                 }}
               >
-                <img 
-                  src="/images/hero-doctor.jpg" 
-                  alt="Naira Hospital Healthcare Specialists" 
+                <img
+                  src="/images/hero-doctor.jpg"
+                  alt="Naira Hospital Healthcare Specialists"
                   className="img-fluid w-100"
-                  style={{ 
-                    maxHeight: '480px', 
-                    objectFit: 'cover', 
-                    display: 'block' 
+                  style={{
+                    maxHeight: '480px',
+                    objectFit: 'cover',
+                    display: 'block'
                   }}
                   onError={(e) => {
-                    // Fallback to care.jpg if needed
                     e.currentTarget.src = '/src/assets/care.jpg';
                   }}
                 />
-                
+
                 {/* Subtle Gradient Overlay at bottom */}
-                <div 
+                <div
                   style={{
                     position: 'absolute',
                     bottom: 0,
@@ -150,7 +191,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Badge Top-Right: Rating */}
-              <div 
+              <div
                 className="hero-floating-badge position-absolute d-none d-sm-flex"
                 style={{
                   top: '25px',
@@ -159,7 +200,7 @@ export default function Hero() {
                   animation: 'floatSlow 4s ease-in-out infinite'
                 }}
               >
-                <div 
+                <div
                   className="rounded-circle d-flex align-items-center justify-content-center text-white"
                   style={{ width: '42px', height: '42px', backgroundColor: '#f59e0b' }}
                 >
@@ -172,7 +213,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Badge Bottom-Left: Emergency Support */}
-              <div 
+              <div
                 className="hero-floating-badge position-absolute d-none d-sm-flex"
                 style={{
                   bottom: '25px',
@@ -180,7 +221,7 @@ export default function Hero() {
                   zIndex: 2
                 }}
               >
-                <div 
+                <div
                   className="rounded-circle d-flex align-items-center justify-content-center text-white"
                   style={{ width: '42px', height: '42px', backgroundColor: 'var(--teal-primary)' }}
                 >
@@ -196,9 +237,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <AppointmentModal 
-        isOpen={appointmentOpen} 
-        onClose={() => setAppointmentOpen(false)} 
+      <AppointmentModal
+        isOpen={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
       />
     </section>
   );

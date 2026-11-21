@@ -471,3 +471,131 @@ a {
     font-size: 0.9rem;
   }
 }
+
+/* ==========================================================================
+   SMOOTH SCROLL, REVEAL & INTERACTIVE ANIMATIONS
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* 1. BUTTON HOVER SCALING ANIMATION */
+.btn-primary-teal,
+.btn-outline-teal,
+.btn-primary-custom,
+.btn-secondary-custom,
+.btn-outline-custom,
+.btn-outline-white {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease !important;
+}
+
+.btn-primary-teal:hover,
+.btn-primary-custom:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 14px 28px -4px rgba(13, 148, 136, 0.38) !important;
+}
+
+.btn-outline-teal:hover,
+.btn-outline-custom:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 8px 20px -4px rgba(13, 148, 136, 0.2) !important;
+}
+
+/* 2. CARD HOVER ANIMATION - SLIGHT LIFT UP + SHADOW */
+.hospital-card,
+.testimonial-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.hospital-card:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  box-shadow: 0 20px 35px -8px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(13, 148, 136, 0.2) !important;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(13, 148, 136, 0.15) !important;
+}
+
+/* 3. HERO SECTION PAGE LOAD FADE-IN ANIMATIONS */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-badge {
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.1s;
+}
+
+.animate-hero-title {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.2s;
+}
+
+.animate-hero-subtitle {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.32s;
+}
+
+.animate-hero-bullets {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.44s;
+}
+
+.animate-hero-ctas {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.54s;
+}
+
+.animate-hero-stats {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.65s;
+}
+
+.animate-hero-image {
+  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}
+
+/* 4. SCROLL REVEAL & STAGGERED CASCADE */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delay for Child Cards */
+.stagger-1 { transition-delay: 0.06s; }
+.stagger-2 { transition-delay: 0.14s; }
+.stagger-3 { transition-delay: 0.22s; }
+.stagger-4 { transition-delay: 0.30s; }
+.stagger-5 { transition-delay: 0.38s; }
+.stagger-6 { transition-delay: 0.46s; }
+.stagger-7 { transition-delay: 0.54s; }
+.stagger-8 { transition-delay: 0.62s; }
+
+/* 5. NAVBAR SCROLL EFFECT */
+.navbar-custom {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, border-color 0.3s ease !important;
+}
+
+.navbar-custom.is-scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08) !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
