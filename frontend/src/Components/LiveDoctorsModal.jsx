@@ -82,7 +82,7 @@ export default function LiveDoctorsModal({ isOpen, onClose, onBookAppointment })
     },
     {
       id: 7,
-      name: 'Dr. T. Revathi',
+      name: 'Dr. T. Ganesh',
       dept: 'Dermatology',
       specialty: 'Consultant Dermatologist',
       room: 'OPD Suite 208',

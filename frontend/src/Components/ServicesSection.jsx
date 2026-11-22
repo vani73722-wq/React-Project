@@ -242,7 +242,7 @@ export default function ServicesSection() {
                   </div>
                   <div className="p-3">
                     <div className="d-flex align-items-center gap-2 mb-1">
-                      <Heart size={16} className="text-teal flex-shrink-0" />
+                      <HeartPulse size={16} className="text-teal flex-shrink-0" />
                       <strong className="text-navy" style={{ fontSize: '0.95rem' }}>Free Health Advice</strong>
                     </div>
                     <small className="text-muted d-block" style={{ fontSize: '0.78rem', lineHeight: '1.4' }}>

@@ -685,6 +685,7 @@ html {
   padding: 0.72rem 1.65rem;
   text-decoration: none;
 }
+
 .btn-green-glow:hover {
   transform: translateY(-2px) scale(1.035) !important;
   box-shadow: 0 8px 26px rgba(0, 230, 118, 0.65) !important;
@@ -708,6 +709,7 @@ html {
   padding: 0.72rem 1.65rem;
   text-decoration: none;
 }
+
 .btn-dark-blue:hover {
   transform: translateY(-2px) scale(1.03) !important;
   box-shadow: 0 8px 24px rgba(7, 31, 61, 0.45) !important;
@@ -731,6 +733,7 @@ html {
   padding: 0.65rem 1.4rem;
   text-decoration: none;
 }
+
 .btn-white-blue:hover {
   background: #f0f7ff !important;
   border-color: #004d99 !important;
@@ -788,10 +791,13 @@ html {
 }
 
 @keyframes liveBlink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.3;
     transform: scale(1.35);
