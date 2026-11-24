@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Search, Phone, Clock, MapPin, Menu, X, Calendar, Activity } from 'lucide-react';
+import { Search, Phone, Clock, MapPin, Menu, X, Calendar, Activity, UserCheck, ShieldCheck } from 'lucide-react';
 import logo from '../assets/Naira.jpg';
 import SearchModal from './SearchModal';
 import AppointmentModal from './AppointmentModal';
 import LiveDoctorsModal from './LiveDoctorsModal';
+import { useDoctorAuth } from '../context/DoctorAuthContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,8 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [liveDoctorsOpen, setLiveDoctorsOpen] = useState(false);
+
+  const { isAuthenticated } = useDoctorAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -169,6 +172,18 @@ export default function Navbar() {
               <span>Book Appointment</span>
             </button>
 
+            {/* Chief Doctor Login Option */}
+            <button
+              type="button"
+              className="btn btn-outline-teal d-none d-md-inline-flex align-items-center gap-1"
+              style={{ padding: '0.62rem 1.15rem' }}
+              onClick={() => navigate(isAuthenticated ? '/doctor-crm' : '/doctor-login')}
+              title={isAuthenticated ? 'Chief Doctor CRM Portal' : 'Chief Doctor Login'}
+            >
+              {isAuthenticated ? <ShieldCheck size={16} /> : <UserCheck size={16} />}
+              <span>{isAuthenticated ? 'CRM Portal' : 'Login'}</span>
+            </button>
+
             {/* Mobile Hamburger Toggle */}
             <button
               type="button"
@@ -224,6 +239,18 @@ export default function Navbar() {
               >
                 <Calendar size={18} />
                 <span>Book Appointment</span>
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-outline-teal w-100 justify-content-center py-2 d-flex align-items-center gap-2"
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate(isAuthenticated ? '/doctor-crm' : '/doctor-login');
+                }}
+              >
+                {isAuthenticated ? <ShieldCheck size={18} /> : <UserCheck size={18} />}
+                <span>{isAuthenticated ? 'Chief Doctor CRM Portal' : 'Chief Doctor Login'}</span>
               </button>
 
               <a

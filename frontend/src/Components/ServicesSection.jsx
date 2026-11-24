@@ -192,7 +192,7 @@ export default function ServicesSection() {
         </div>
 
         {/* ==========================================================================
-            SUNDAY ONLY - FREE HEALTH MEETING (STRESS REDUCE PANNA FREE MEETING)
+            SUNDAY ONLY - FREE HEALTH MEETING (  FREE MEETING TO REDUCE STRESS)
             ========================================================================== */}
         <div id="sunday-meeting" className="mt-5 pt-4 scroll-reveal">
           <div className="sunday-meeting-card p-4 p-lg-5">
@@ -220,7 +220,7 @@ export default function ServicesSection() {
                 SUNDAY ONLY — <span className="text-teal" style={{ background: 'var(--teal-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>FREE HEALTH MEETING</span>
               </h3>
               <p className="lead fw-bold text-pink-accent mb-2" style={{ fontSize: '1.25rem' }}>
-                "Stress Reduce Panna Free Meeting — Ellarukum Free!"
+                " Free Meeting to Reduce Stress- Free For Everyone!"
               </p>
               <p className="text-muted mb-0" style={{ maxWidth: '780px', lineHeight: '1.6' }}>
                 Join our complimentary community wellness gathering designed to help you de-stress, boost energy, and learn preventive care directly from expert physicians and wellness coaches. Open for all families!
