@@ -9,7 +9,7 @@ export default function FacilitiesSection() {
       id: 'icu',
       title: 'ICU Care',
       subtitle: '24/7 Critical Care Unit',
-      image: '/images/facilities/icu.jpg',
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d',
       shortDesc: 'Dedicated intensive care unit featuring advanced multi-parameter monitors, ventilators, and round-the-clock intensivist coverage.',
       fullDesc: 'Our Intensive Care Unit (ICU) provides specialized monitoring and clinical life support for critically ill patients. With strict sterile controls, dedicated 1:1 nurse-to-patient ratios for critical cases, advanced mechanical ventilators, and non-invasive hemodynamic monitoring, our ICU is always ready for emergency interventions.',
       highlights: [
@@ -23,7 +23,7 @@ export default function FacilitiesSection() {
       id: 'lab',
       title: 'Advanced Laboratory',
       subtitle: 'Accredited Diagnostic Pathology',
-      image: '/images/facilities/laboratory.jpg',
+      image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88',
       shortDesc: 'Fully automated diagnostic laboratory delivering accurate, rapid results for biochemistry, pathology, and microbiology.',
       fullDesc: 'The central diagnostic laboratory at Naira Hospital operates 24/7 to support clinical decisions. Powered by computerized barcoded sample tracking, automated analyzers, and rigorous quality control protocols, we ensure fast turnaround times for routine as well as emergency investigations.',
       highlights: [
@@ -37,7 +37,7 @@ export default function FacilitiesSection() {
       id: 'imaging',
       title: 'Diagnostic Imaging',
       subtitle: 'Digital Radiology & Scans',
-      image: '/images/facilities/diagnostic.jpg',
+      image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907',
       shortDesc: 'Comprehensive imaging services including high-resolution Digital X-Ray, CT scan, and 3D Color Doppler Ultrasound.',
       fullDesc: 'Our Radiology and Imaging Centre is equipped with advanced low-radiation digital imaging technology. Radiologists work directly with treating physicians to provide prompt and precise diagnostic scans for trauma, orthopedic injuries, chest conditions, and abdominal emergencies.',
       highlights: [
@@ -51,7 +51,7 @@ export default function FacilitiesSection() {
       id: 'rooms',
       title: 'Modern Patient Rooms',
       subtitle: 'Comfortable Inpatient Suites',
-      image: '/images/facilities/patient-rooms.jpg',
+      image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
       shortDesc: 'Spacious, hygienic private suites and semi-private rooms thoughtfully engineered for serene patient rest and recovery.',
       fullDesc: 'Designed to offer peaceful, therapeutic recovery environments, our inpatient rooms feature ergonomic motorized hospital beds, nurse call intercoms, climate control, and attached sanitized restrooms. Each room provides comfortable accommodations for family attendants as well.',
       highlights: [

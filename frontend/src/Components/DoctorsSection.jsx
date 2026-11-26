@@ -96,7 +96,7 @@ export default function DoctorsSection() {
     },
     {
       id: 7,
-      name: 'Dr. T. Revathi',
+      name: 'Dr. T. Ganesh',
       degree: 'MBBS, MD (DVL)',
       specialty: 'Consultant Dermatologist',
       department: 'General Medicine',

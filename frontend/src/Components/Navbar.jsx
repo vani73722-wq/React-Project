@@ -177,7 +177,9 @@ export default function Navbar() {
               type="button"
               className="btn btn-outline-teal d-none d-md-inline-flex align-items-center gap-1"
               style={{ padding: '0.62rem 1.15rem' }}
-              onClick={() => navigate(isAuthenticated ? '/doctor-crm' : '/doctor-login')}
+              onClick={() => {
+                window.location.href = 'https://react-project-two-delta-61.vercel.app/login';
+              }}
               title={isAuthenticated ? 'Chief Doctor CRM Portal' : 'Chief Doctor Login'}
             >
               {isAuthenticated ? <ShieldCheck size={16} /> : <UserCheck size={16} />}
@@ -246,7 +248,7 @@ export default function Navbar() {
                 className="btn btn-outline-teal w-100 justify-content-center py-2 d-flex align-items-center gap-2"
                 onClick={() => {
                   setIsOpen(false);
-                  navigate(isAuthenticated ? '/doctor-crm' : '/doctor-login');
+                  window.location.href = 'https://react-project-two-delta-61.vercel.app/login';
                 }}
               >
                 {isAuthenticated ? <ShieldCheck size={18} /> : <UserCheck size={18} />}
